@@ -1,68 +1,69 @@
-TASK_NAME=sst2
-
-moe_level=task
-
-k=12
-n_experts=16
-
-model_name_or_path=bert-base-uncased
-do_train=False
+model_name_or_path=bert-base-cased
+use_moe=none
+# use_moe=MoE
+# use_moe=MEO
+dataset_name=wikitext
+dataset_config_name=wikitext-2-raw-v1
 
 per_device_train_batch_size=16
-per_device_eval_batch_size=32
+per_device_eval_batch_size=16
 
 num_train_epochs=10
 dataloader_num_workers=16
-evaluation_strategy=epoch
+
 save_strategy=steps
-weight_decay=0.1
-learning_rate=1e-5
+evaluation_strategy=steps
+save_steps=500
+eval_steps=500
 seed=42
-output_dir=./checkpoints/${model_name_or_path##*/}/${TASK_NAME}/${use_moe}/${n_experts}_${k}_${moe_level}_${learning_rate}
+
+log_out=log.out
+output_dir=./checkpoints/${model_name_or_path##*/}/${use_moe}
 
 echo "${output_dir}"
 mkdir -p ${output_dir}
 
-echo  --model_name_or_path ${model_name_or_path} \
+echo  --use_moe ${use_moe} \
+      --model_name_or_path ${model_name_or_path} \
       --output_dir ${output_dir} \
-      --task_name ${TASK_NAME} \
-      --use_moe ${use_moe} \
-      --moe_level ${moe_level} \
-      --k ${k} \
-      --n_experts ${n_experts} \
+      --dataset_name ${dataset_name} \
+      --dataset_config_name ${dataset_config_name} \
       --per_device_train_batch_size ${per_device_train_batch_size} \
       --per_device_eval_batch_size ${per_device_eval_batch_size} \
       --num_train_epochs ${num_train_epochs} \
-      --weight_decay ${weight_decay} --learning_rate ${learning_rate} \
       --overwrite_output_dir \
-      --do_train ${do_train}\
+      --do_train \
       --do_eval \
-      --weight_decay ${weight_decay} \
+      --eval_steps ${eval_steps} \
+      --save_steps ${save_steps} \
+      --seed ${seed} \
       --dataloader_num_workers ${dataloader_num_workers} --disable_tqdm True \
       --save_strategy ${save_strategy} --evaluation_strategy ${evaluation_strategy} \
+      --load_best_model_at_end True \
       > ${output_dir}/config.txt
 
 if [ ! -f ${output_dir}/log.out ];then
 echo "The file doesn't exist."
 else
-rm -d ${output_dir}/log.out
+rm -d ${output_dir}/${log_out}
 fi
 
-python run_glue.py \
+python run_mlm.py \
+      --use_moe ${use_moe} \
       --model_name_or_path ${model_name_or_path} \
       --output_dir ${output_dir} \
-      --task_name ${TASK_NAME} \
-      --use_moe ${use_moe} \
-      --moe_level ${moe_level} \
-      --k ${k} \
-      --n_experts ${n_experts} \
+      --dataset_name ${dataset_name} \
+      --dataset_config_name ${dataset_config_name} \
       --per_device_train_batch_size ${per_device_train_batch_size} \
       --per_device_eval_batch_size ${per_device_eval_batch_size} \
       --num_train_epochs ${num_train_epochs} \
-      --weight_decay ${weight_decay} --learning_rate ${learning_rate} \
       --overwrite_output_dir \
-      --do_train ${do_train}\
+      --do_train \
       --do_eval \
-      --weight_decay ${weight_decay} \
+      --eval_steps ${eval_steps} \
+      --save_steps ${save_steps} \
+      --seed ${seed} \
       --dataloader_num_workers ${dataloader_num_workers} --disable_tqdm True \
       --save_strategy ${save_strategy} --evaluation_strategy ${evaluation_strategy} \
+      --load_best_model_at_end True \
+      > ${output_dir}/${log_out} & echo $! > ${output_dir}/log.txt &

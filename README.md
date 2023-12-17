@@ -14,6 +14,17 @@ EMNLP 2023 Main Conference.
 - tokenizers==0.10.1
 - nltk==3.5
 
+## Usage
+
+You should add your local path of transformers in run_glue.py. \
+To train MoE on GLUE, run: 
+
+`./dyconv/main.py` 
+
+To train DY-Conv on ImageNet, run: 
+
+`./moe/tasks/text-classification/run_glue_pad.py` 
+
 ## Citation
 
 ```
