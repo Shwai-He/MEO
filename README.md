@@ -16,14 +16,21 @@ EMNLP 2023 Main Conference.
 
 ## Usage
 
-You should add your local path of transformers in run_glue.py. \
-To train MoE on GLUE, run: 
+Run BERT on GLUE for text classification: 
 
-`./dyconv/main.py` 
+`tasks/text-classification/run_glue.py`; 
 
-To train DY-Conv on ImageNet, run: 
+Run GPT-2 on Wikitext for language modeling: 
 
-`./moe/tasks/text-classification/run_glue_pad.py` 
+`tasks/language-modeling/run_clm.py`; 
+
+Run T5 on SquAD for question-answering: 
+
+`tasks/question-answering/run_seq2seq_qa.py`; 
+
+Run BART on XSum for summarization: 
+
+`tasks/summarization/run_summarization.py`; 
 
 ## Citation
 

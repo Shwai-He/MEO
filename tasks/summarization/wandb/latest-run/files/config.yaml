@@ -1,0 +1,691 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.9.16
+    cli_version: 0.15.3
+    framework: huggingface
+    huggingface_version: 4.28.1
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1693265233.645711
+    t:
+      1:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 11
+      - 49
+      - 51
+      - 53
+      - 55
+      - 71
+      2:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 11
+      - 49
+      - 51
+      - 53
+      - 55
+      - 71
+      3:
+      - 7
+      - 23
+      4: 3.9.16
+      5: 0.15.3
+      6: 4.28.1
+      8:
+      - 5
+    m:
+    - 1: train/global_step
+      6:
+      - 3
+    - 1: eval/loss
+      5: 1
+      6:
+      - 1
+    - 1: eval/runtime
+      5: 1
+      6:
+      - 1
+    - 1: eval/samples_per_second
+      5: 1
+      6:
+      - 1
+    - 1: eval/steps_per_second
+      5: 1
+      6:
+      - 1
+vocab_size:
+  desc: null
+  value: 50265
+max_position_embeddings:
+  desc: null
+  value: 1024
+d_model:
+  desc: null
+  value: 1024
+encoder_ffn_dim:
+  desc: null
+  value: 4096
+encoder_layers:
+  desc: null
+  value: 12
+encoder_attention_heads:
+  desc: null
+  value: 16
+decoder_ffn_dim:
+  desc: null
+  value: 4096
+decoder_layers:
+  desc: null
+  value: 12
+decoder_attention_heads:
+  desc: null
+  value: 16
+dropout:
+  desc: null
+  value: 0.1
+attention_dropout:
+  desc: null
+  value: 0.1
+activation_dropout:
+  desc: null
+  value: 0.1
+activation_function:
+  desc: null
+  value: gelu
+init_std:
+  desc: null
+  value: 0.02
+encoder_layerdrop:
+  desc: null
+  value: 0.0
+decoder_layerdrop:
+  desc: null
+  value: 0.0
+classifier_dropout:
+  desc: null
+  value: 0.0
+use_cache:
+  desc: null
+  value: true
+num_hidden_layers:
+  desc: null
+  value: 12
+scale_embedding:
+  desc: null
+  value: false
+return_dict:
+  desc: null
+  value: true
+output_hidden_states:
+  desc: null
+  value: false
+output_attentions:
+  desc: null
+  value: false
+torchscript:
+  desc: null
+  value: false
+torch_dtype:
+  desc: null
+  value: null
+use_bfloat16:
+  desc: null
+  value: false
+tf_legacy_loss:
+  desc: null
+  value: false
+pruned_heads:
+  desc: null
+  value: {}
+tie_word_embeddings:
+  desc: null
+  value: true
+is_encoder_decoder:
+  desc: null
+  value: true
+is_decoder:
+  desc: null
+  value: false
+cross_attention_hidden_size:
+  desc: null
+  value: null
+add_cross_attention:
+  desc: null
+  value: false
+tie_encoder_decoder:
+  desc: null
+  value: false
+max_length:
+  desc: null
+  value: 20
+min_length:
+  desc: null
+  value: 0
+do_sample:
+  desc: null
+  value: false
+early_stopping:
+  desc: null
+  value: true
+num_beams:
+  desc: null
+  value: 4
+num_beam_groups:
+  desc: null
+  value: 1
+diversity_penalty:
+  desc: null
+  value: 0.0
+temperature:
+  desc: null
+  value: 1.0
+top_k:
+  desc: null
+  value: 50
+top_p:
+  desc: null
+  value: 1.0
+typical_p:
+  desc: null
+  value: 1.0
+repetition_penalty:
+  desc: null
+  value: 1.0
+length_penalty:
+  desc: null
+  value: 1.0
+no_repeat_ngram_size:
+  desc: null
+  value: 3
+encoder_no_repeat_ngram_size:
+  desc: null
+  value: 0
+bad_words_ids:
+  desc: null
+  value: null
+num_return_sequences:
+  desc: null
+  value: 1
+chunk_size_feed_forward:
+  desc: null
+  value: 0
+output_scores:
+  desc: null
+  value: false
+return_dict_in_generate:
+  desc: null
+  value: false
+forced_bos_token_id:
+  desc: null
+  value: 0
+forced_eos_token_id:
+  desc: null
+  value: 2
+remove_invalid_values:
+  desc: null
+  value: false
+exponential_decay_length_penalty:
+  desc: null
+  value: null
+suppress_tokens:
+  desc: null
+  value: null
+begin_suppress_tokens:
+  desc: null
+  value: null
+architectures:
+  desc: null
+  value:
+  - BartModel
+finetuning_task:
+  desc: null
+  value: null
+id2label:
+  desc: null
+  value:
+    '0': LABEL_0
+    '1': LABEL_1
+    '2': LABEL_2
+label2id:
+  desc: null
+  value:
+    LABEL_0: 0
+    LABEL_1: 1
+    LABEL_2: 2
+tokenizer_class:
+  desc: null
+  value: null
+prefix:
+  desc: null
+  value: null
+bos_token_id:
+  desc: null
+  value: 0
+pad_token_id:
+  desc: null
+  value: 1
+eos_token_id:
+  desc: null
+  value: 2
+sep_token_id:
+  desc: null
+  value: null
+decoder_start_token_id:
+  desc: null
+  value: 2
+task_specific_params:
+  desc: null
+  value:
+    summarization:
+      length_penalty: 1.0
+      max_length: 128
+      min_length: 12
+      num_beams: 4
+    summarization_cnn:
+      length_penalty: 2.0
+      max_length: 142
+      min_length: 56
+      num_beams: 4
+    summarization_xsum:
+      length_penalty: 1.0
+      max_length: 62
+      min_length: 11
+      num_beams: 6
+problem_type:
+  desc: null
+  value: null
+_name_or_path:
+  desc: null
+  value: facebook/bart-large
+transformers_version:
+  desc: null
+  value: 4.28.1
+add_bias_logits:
+  desc: null
+  value: false
+add_final_layer_norm:
+  desc: null
+  value: false
+classif_dropout:
+  desc: null
+  value: 0.1
+gradient_checkpointing:
+  desc: null
+  value: false
+model_type:
+  desc: null
+  value: bart
+normalize_before:
+  desc: null
+  value: false
+pos_moe:
+  desc: null
+  value: none
+description_size:
+  desc: null
+  value: 128
+n_experts:
+  desc: null
+  value: 8
+moe_level:
+  desc: null
+  value: sentence
+use_moe:
+  desc: null
+  value: none
+seed:
+  desc: null
+  value: 42
+k:
+  desc: null
+  value: 2
+max_source_length:
+  desc: null
+  value: 1024
+max_target_length:
+  desc: null
+  value: 128
+output_dir:
+  desc: null
+  value: ./checkpoints/bart-large/none/8_2_sentence_1e-4
+overwrite_output_dir:
+  desc: null
+  value: true
+do_train:
+  desc: null
+  value: false
+do_eval:
+  desc: null
+  value: true
+do_predict:
+  desc: null
+  value: false
+evaluation_strategy:
+  desc: null
+  value: epoch
+prediction_loss_only:
+  desc: null
+  value: false
+per_device_train_batch_size:
+  desc: null
+  value: 8
+per_device_eval_batch_size:
+  desc: null
+  value: 16
+per_gpu_train_batch_size:
+  desc: null
+  value: None
+per_gpu_eval_batch_size:
+  desc: null
+  value: None
+gradient_accumulation_steps:
+  desc: null
+  value: 1
+eval_accumulation_steps:
+  desc: null
+  value: 20
+eval_delay:
+  desc: null
+  value: 0
+learning_rate:
+  desc: null
+  value: 0.0001
+weight_decay:
+  desc: null
+  value: 0.1
+adam_beta1:
+  desc: null
+  value: 0.9
+adam_beta2:
+  desc: null
+  value: 0.999
+adam_epsilon:
+  desc: null
+  value: 1.0e-08
+max_grad_norm:
+  desc: null
+  value: 1.0
+num_train_epochs:
+  desc: null
+  value: 4.0
+max_steps:
+  desc: null
+  value: -1
+lr_scheduler_type:
+  desc: null
+  value: linear
+warmup_ratio:
+  desc: null
+  value: 0.0
+warmup_steps:
+  desc: null
+  value: 0
+log_level:
+  desc: null
+  value: passive
+log_level_replica:
+  desc: null
+  value: warning
+log_on_each_node:
+  desc: null
+  value: true
+logging_dir:
+  desc: null
+  value: ./checkpoints/bart-large/none/8_2_sentence_1e-4/runs/Aug28_19-26-06_tron05.umiacs.umd.edu
+logging_strategy:
+  desc: null
+  value: steps
+logging_first_step:
+  desc: null
+  value: false
+logging_steps:
+  desc: null
+  value: 500
+logging_nan_inf_filter:
+  desc: null
+  value: true
+save_strategy:
+  desc: null
+  value: steps
+save_steps:
+  desc: null
+  value: 9999999999
+save_total_limit:
+  desc: null
+  value: None
+save_safetensors:
+  desc: null
+  value: false
+save_on_each_node:
+  desc: null
+  value: false
+no_cuda:
+  desc: null
+  value: false
+use_mps_device:
+  desc: null
+  value: false
+data_seed:
+  desc: null
+  value: None
+jit_mode_eval:
+  desc: null
+  value: false
+use_ipex:
+  desc: null
+  value: false
+bf16:
+  desc: null
+  value: false
+fp16:
+  desc: null
+  value: false
+fp16_opt_level:
+  desc: null
+  value: O1
+half_precision_backend:
+  desc: null
+  value: auto
+bf16_full_eval:
+  desc: null
+  value: false
+fp16_full_eval:
+  desc: null
+  value: false
+tf32:
+  desc: null
+  value: None
+local_rank:
+  desc: null
+  value: -1
+xpu_backend:
+  desc: null
+  value: None
+tpu_num_cores:
+  desc: null
+  value: None
+tpu_metrics_debug:
+  desc: null
+  value: false
+debug:
+  desc: null
+  value: '[]'
+dataloader_drop_last:
+  desc: null
+  value: false
+eval_steps:
+  desc: null
+  value: None
+dataloader_num_workers:
+  desc: null
+  value: 0
+past_index:
+  desc: null
+  value: -1
+run_name:
+  desc: null
+  value: ./checkpoints/bart-large/none/8_2_sentence_1e-4
+disable_tqdm:
+  desc: null
+  value: false
+remove_unused_columns:
+  desc: null
+  value: true
+label_names:
+  desc: null
+  value: None
+load_best_model_at_end:
+  desc: null
+  value: false
+metric_for_best_model:
+  desc: null
+  value: rouge2
+greater_is_better:
+  desc: null
+  value: true
+ignore_data_skip:
+  desc: null
+  value: false
+sharded_ddp:
+  desc: null
+  value: '[]'
+fsdp:
+  desc: null
+  value: '[]'
+fsdp_min_num_params:
+  desc: null
+  value: 0
+fsdp_config:
+  desc: null
+  value: '{''fsdp_min_num_params'': 0, ''xla'': False, ''xla_fsdp_grad_ckpt'': False}'
+fsdp_transformer_layer_cls_to_wrap:
+  desc: null
+  value: None
+deepspeed:
+  desc: null
+  value: None
+label_smoothing_factor:
+  desc: null
+  value: 0.0
+optim:
+  desc: null
+  value: adamw_hf
+optim_args:
+  desc: null
+  value: None
+adafactor:
+  desc: null
+  value: false
+group_by_length:
+  desc: null
+  value: false
+length_column_name:
+  desc: null
+  value: length
+report_to:
+  desc: null
+  value: '[''tensorboard'', ''wandb'']'
+ddp_find_unused_parameters:
+  desc: null
+  value: None
+ddp_bucket_cap_mb:
+  desc: null
+  value: None
+dataloader_pin_memory:
+  desc: null
+  value: true
+skip_memory_metrics:
+  desc: null
+  value: true
+use_legacy_prediction_loop:
+  desc: null
+  value: false
+push_to_hub:
+  desc: null
+  value: false
+resume_from_checkpoint:
+  desc: null
+  value: None
+hub_model_id:
+  desc: null
+  value: None
+hub_strategy:
+  desc: null
+  value: every_save
+hub_token:
+  desc: null
+  value: <HUB_TOKEN>
+hub_private_repo:
+  desc: null
+  value: false
+include_inputs_for_metrics:
+  desc: null
+  value: false
+fp16_backend:
+  desc: null
+  value: auto
+push_to_hub_model_id:
+  desc: null
+  value: None
+push_to_hub_organization:
+  desc: null
+  value: None
+push_to_hub_token:
+  desc: null
+  value: <PUSH_TO_HUB_TOKEN>
+mp_parameters:
+  desc: null
+  value: ''
+auto_find_batch_size:
+  desc: null
+  value: false
+full_determinism:
+  desc: null
+  value: false
+torchdynamo:
+  desc: null
+  value: None
+ray_scope:
+  desc: null
+  value: last
+ddp_timeout:
+  desc: null
+  value: 1800
+torch_compile:
+  desc: null
+  value: false
+torch_compile_backend:
+  desc: null
+  value: None
+torch_compile_mode:
+  desc: null
+  value: None
+sortish_sampler:
+  desc: null
+  value: false
+predict_with_generate:
+  desc: null
+  value: false
+generation_max_length:
+  desc: null
+  value: None
+generation_num_beams:
+  desc: null
+  value: None
+generation_config:
+  desc: null
+  value: None
+train_batch_size:
+  desc: null
+  value: 8
+eval_batch_size:
+  desc: null
+  value: 16
