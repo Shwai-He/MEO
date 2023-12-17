@@ -1,0 +1,346 @@
+./checkpoints/bert-base-uncased/sst2/MEO/16_2_task_1e-5
+../../cache_dir
+The file doesn't exist.
+2023-11-21 09:36:49.460615: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2023-11-21 09:36:49.686213: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-11-21 09:36:51.866176: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[2023-11-21 09:36:59,019] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+11/21/2023 09:37:08 - WARNING - __main__ -   Process rank: 0, device: cuda:0, n_gpu: 1distributed training: True, 16-bits training: False
+11/21/2023 09:37:08 - INFO - __main__ -   Training/evaluation parameters TrainingArguments(
+_n_gpu=1,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=16,
+dataloader_pin_memory=True,
+ddp_backend=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=True,
+do_eval=True,
+do_predict=False,
+do_train=False,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+evaluation_strategy=epoch,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'fsdp_min_num_params': 0, 'xla': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=1e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=./checkpoints/bert-base-uncased/sst2/MEO/16_2_task_1e-5/runs/Nov21_09-37-08_SH-IDCA1404-10-140-54-54,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=10.0,
+optim=adamw_hf,
+optim_args=None,
+output_dir=./checkpoints/bert-base-uncased/sst2/MEO/16_2_task_1e-5,
+overwrite_output_dir=True,
+past_index=-1,
+per_device_eval_batch_size=32,
+per_device_train_batch_size=16,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard'],
+resume_from_checkpoint=None,
+run_name=./checkpoints/bert-base-uncased/sst2/MEO/16_2_task_1e-5,
+save_on_each_node=False,
+save_safetensors=False,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.1,
+xpu_backend=None,
+)
+11/21/2023 09:37:08 - INFO - __main__ -   Tuning Strategy TrainingArguments(
+_n_gpu=1,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=16,
+dataloader_pin_memory=True,
+ddp_backend=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=True,
+do_eval=True,
+do_predict=False,
+do_train=False,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+evaluation_strategy=epoch,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'fsdp_min_num_params': 0, 'xla': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=1e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=./checkpoints/bert-base-uncased/sst2/MEO/16_2_task_1e-5/runs/Nov21_09-37-08_SH-IDCA1404-10-140-54-54,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=10.0,
+optim=adamw_hf,
+optim_args=None,
+output_dir=./checkpoints/bert-base-uncased/sst2/MEO/16_2_task_1e-5,
+overwrite_output_dir=True,
+past_index=-1,
+per_device_eval_batch_size=32,
+per_device_train_batch_size=16,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard'],
+resume_from_checkpoint=None,
+run_name=./checkpoints/bert-base-uncased/sst2/MEO/16_2_task_1e-5,
+save_on_each_node=False,
+save_safetensors=False,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.1,
+xpu_backend=None,
+)
+11/21/2023 09:43:48 - WARNING - datasets.load -   Using the latest cached version of the module from /mnt/petrelfs/dongdaize.d/.cache/huggingface/modules/datasets_modules/datasets/glue/dacbe3125aa31d7f70367a07a8a9e72a5a0bfeb5fc42e75c9db75b96da6053ad (last modified on Wed Nov 15 20:39:54 2023) since it couldn't be found locally at glue., or remotely on the Hugging Face Hub.
+11/21/2023 09:43:48 - WARNING - datasets.builder -   Found cached dataset glue (/mnt/petrelfs/dongdaize.d/.cache/huggingface/datasets/glue/sst2/1.0.0/dacbe3125aa31d7f70367a07a8a9e72a5a0bfeb5fc42e75c9db75b96da6053ad)
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 113.06it/s]
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /bert-base-uncased/resolve/main/config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f5b110fb130>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: bf69b84e-857e-4267-bcea-c08232c6e15e)')' thrown while requesting HEAD https://huggingface.co/bert-base-uncased/resolve/main/config.json
+11/21/2023 09:44:28 - WARNING - huggingface_hub.utils._http -   '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /bert-base-uncased/resolve/main/config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f5b110fb130>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: bf69b84e-857e-4267-bcea-c08232c6e15e)')' thrown while requesting HEAD https://huggingface.co/bert-base-uncased/resolve/main/config.json
+[INFO|configuration_utils.py:669] 2023-11-21 09:44:28,898 >> loading configuration file config.json from cache at /mnt/petrelfs/dongdaize.d/.cache/huggingface/hub/models--bert-base-uncased/snapshots/1dbc166cf8765166998eff31ade2eb64c8a40076/config.json
+[INFO|configuration_utils.py:725] 2023-11-21 09:44:28,922 >> Model config BertConfig {
+  "_name_or_path": "bert-base-uncased",
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_dropout": null,
+  "finetuning_task": "sst2",
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.30.2",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 30522
+}
+
+[INFO|modeling_utils.py:2593] 2023-11-21 09:44:29,109 >> loading weights file model.safetensors from cache at /mnt/petrelfs/dongdaize.d/.cache/huggingface/hub/models--bert-base-uncased/snapshots/1dbc166cf8765166998eff31ade2eb64c8a40076/model.safetensors
+[WARNING|modeling_utils.py:3303] 2023-11-21 09:44:30,303 >> Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertForSequenceClassification: ['cls.predictions.transform.dense.weight', 'cls.seq_relationship.bias', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.bias', 'cls.seq_relationship.weight']
+- This IS expected if you are initializing BertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+[WARNING|modeling_utils.py:3315] 2023-11-21 09:44:30,303 >> Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-uncased and are newly initialized: ['bert.encoder.layer.5.output.dense.mean', 'bert.encoder.layer.11.output.dense.w_noise', 'bert.encoder.layer.10.intermediate.dense.mean', 'bert.encoder.layer.4.output.dense.std', 'bert.encoder.layer.1.output.dense.w_gate', 'bert.encoder.layer.4.intermediate.dense.task_proj.weight', 'bert.encoder.layer.2.intermediate.dense.std', 'bert.encoder.layer.7.output.dense.mean', 'bert.encoder.layer.9.intermediate.dense.task_proj.weight', 'bert.encoder.layer.6.output.dense.mean', 'bert.encoder.layer.11.intermediate.dense.std', 'bert.encoder.layer.2.output.dense.task_proj.weight', 'bert.encoder.layer.9.output.dense.std', 'bert.encoder.layer.6.intermediate.dense.task_proj.weight', 'classifier.bias', 'bert.encoder.layer.7.intermediate.dense.w_noise', 'bert.encoder.layer.9.intermediate.dense.task_proj.bias', 'bert.encoder.layer.2.intermediate.dense.task_proj.weight', 'bert.encoder.layer.5.intermediate.dense.w_gate', 'bert.encoder.layer.2.output.dense.mean', 'bert.encoder.layer.6.intermediate.dense.mean', 'bert.encoder.layer.0.intermediate.dense.task_proj.bias', 'bert.encoder.layer.1.intermediate.dense.std', 'bert.encoder.layer.1.output.dense.mean', 'bert.encoder.layer.3.intermediate.dense.task_proj.bias', 'bert.encoder.layer.2.intermediate.dense.task_proj.bias', 'bert.encoder.layer.10.intermediate.dense.w_noise', 'bert.encoder.layer.0.intermediate.dense.mean', 'bert.encoder.layer.6.intermediate.dense.w_noise', 'bert.encoder.layer.5.intermediate.dense.std', 'bert.encoder.layer.3.output.dense.w_gate', 'bert.encoder.layer.11.output.dense.std', 'bert.encoder.layer.8.output.dense.mean', 'bert.encoder.layer.8.intermediate.dense.w_gate', 'bert.encoder.layer.8.output.dense.w_gate', 'bert.encoder.layer.4.output.dense.mean', 'bert.encoder.layer.4.intermediate.dense.task_proj.bias', 'bert.encoder.layer.5.output.dense.task_proj.weight', 'bert.encoder.layer.11.intermediate.dense.task_proj.weight', 'bert.encoder.layer.7.intermediate.dense.w_gate', 'bert.encoder.layer.5.intermediate.dense.task_proj.weight', 'bert.encoder.layer.4.intermediate.dense.w_noise', 'bert.encoder.layer.3.intermediate.dense.mean', 'bert.encoder.layer.5.intermediate.dense.w_noise', 'bert.encoder.layer.9.output.dense.task_proj.bias', 'bert.encoder.layer.7.output.dense.std', 'bert.encoder.layer.9.intermediate.dense.w_noise', 'bert.encoder.layer.4.output.dense.task_proj.bias', 'bert.encoder.layer.11.intermediate.dense.w_noise', 'bert.encoder.layer.10.output.dense.std', 'bert.encoder.layer.1.intermediate.dense.task_proj.weight', 'bert.encoder.layer.8.intermediate.dense.task_proj.bias', 'bert.embeddings.task_embeddings.weight', 'bert.encoder.layer.2.intermediate.dense.mean', 'bert.encoder.layer.3.output.dense.w_noise', 'bert.encoder.layer.6.output.dense.task_proj.bias', 'bert.encoder.layer.10.output.dense.task_proj.weight', 'bert.encoder.layer.9.output.dense.w_gate', 'bert.encoder.layer.5.output.dense.w_noise', 'bert.encoder.layer.0.output.dense.task_proj.weight', 'bert.encoder.layer.0.output.dense.mean', 'bert.encoder.layer.6.output.dense.task_proj.weight', 'bert.encoder.layer.6.output.dense.std', 'bert.encoder.layer.1.output.dense.task_proj.bias', 'bert.encoder.layer.3.output.dense.task_proj.bias', 'bert.encoder.layer.7.output.dense.task_proj.weight', 'bert.encoder.layer.11.output.dense.task_proj.bias', 'bert.encoder.layer.8.output.dense.task_proj.bias', 'bert.encoder.layer.2.output.dense.w_gate', 'bert.encoder.layer.8.output.dense.task_proj.weight', 'bert.encoder.layer.7.intermediate.dense.task_proj.bias', 'bert.encoder.layer.0.intermediate.dense.task_proj.weight', 'bert.encoder.layer.3.intermediate.dense.w_gate', 'bert.encoder.layer.11.output.dense.task_proj.weight', 'bert.encoder.layer.1.intermediate.dense.w_noise', 'bert.encoder.layer.10.intermediate.dense.w_gate', 'bert.encoder.layer.10.intermediate.dense.task_proj.weight', 'bert.encoder.layer.2.intermediate.dense.w_gate', 'bert.encoder.layer.1.output.dense.w_noise', 'bert.encoder.layer.1.intermediate.dense.task_proj.bias', 'bert.encoder.layer.0.output.dense.std', 'bert.encoder.layer.9.output.dense.w_noise', 'bert.encoder.layer.10.intermediate.dense.task_proj.bias', 'bert.encoder.layer.8.output.dense.w_noise', 'bert.encoder.layer.9.intermediate.dense.std', 'bert.encoder.layer.8.intermediate.dense.mean', 'bert.encoder.layer.7.output.dense.task_proj.bias', 'bert.encoder.layer.10.output.dense.mean', 'bert.encoder.layer.5.output.dense.std', 'bert.encoder.layer.1.output.dense.task_proj.weight', 'bert.encoder.layer.0.output.dense.task_proj.bias', 'bert.encoder.layer.7.intermediate.dense.mean', 'bert.encoder.layer.7.intermediate.dense.std', 'bert.encoder.layer.7.intermediate.dense.task_proj.weight', 'bert.encoder.layer.5.output.dense.task_proj.bias', 'bert.encoder.layer.5.intermediate.dense.mean', 'bert.encoder.layer.1.intermediate.dense.w_gate', 'bert.encoder.layer.6.output.dense.w_noise', 'bert.encoder.layer.2.intermediate.dense.w_noise', 'bert.encoder.layer.8.intermediate.dense.w_noise', 'bert.encoder.layer.6.intermediate.dense.w_gate', 'bert.encoder.layer.7.output.dense.w_gate', 'bert.encoder.layer.4.intermediate.dense.w_gate', 'bert.encoder.layer.10.output.dense.task_proj.bias', 'bert.encoder.layer.9.intermediate.dense.mean', 'bert.encoder.layer.0.intermediate.dense.w_gate', 'bert.encoder.layer.3.intermediate.dense.task_proj.weight', 'bert.encoder.layer.11.intermediate.dense.task_proj.bias', 'bert.encoder.layer.5.output.dense.w_gate', 'bert.encoder.layer.4.intermediate.dense.mean', 'bert.encoder.layer.11.output.dense.w_gate', 'bert.encoder.layer.0.output.dense.w_noise', 'bert.encoder.layer.3.intermediate.dense.std', 'bert.encoder.layer.8.output.dense.std', 'bert.encoder.layer.10.output.dense.w_gate', 'bert.encoder.layer.6.output.dense.w_gate', 'bert.encoder.layer.11.intermediate.dense.mean', 'bert.encoder.layer.3.intermediate.dense.w_noise', 'bert.encoder.layer.4.output.dense.task_proj.weight', 'bert.encoder.layer.1.intermediate.dense.mean', 'bert.encoder.layer.0.intermediate.dense.std', 'bert.encoder.layer.0.output.dense.w_gate', 'bert.encoder.layer.7.output.dense.w_noise', 'bert.encoder.layer.4.output.dense.w_gate', 'bert.encoder.layer.10.output.dense.w_noise', 'bert.encoder.layer.9.output.dense.mean', 'bert.encoder.layer.8.intermediate.dense.task_proj.weight', 'bert.encoder.layer.2.output.dense.std', 'bert.encoder.layer.8.intermediate.dense.std', 'bert.encoder.layer.5.intermediate.dense.task_proj.bias', 'bert.encoder.layer.0.intermediate.dense.w_noise', 'bert.encoder.layer.3.output.dense.mean', 'bert.encoder.layer.2.output.dense.task_proj.bias', 'bert.encoder.layer.9.intermediate.dense.w_gate', 'bert.encoder.layer.6.intermediate.dense.std', 'bert.encoder.layer.9.output.dense.task_proj.weight', 'bert.encoder.layer.4.output.dense.w_noise', 'bert.encoder.layer.3.output.dense.std', 'bert.encoder.layer.3.output.dense.task_proj.weight', 'classifier.weight', 'bert.encoder.layer.6.intermediate.dense.task_proj.bias', 'bert.encoder.layer.10.intermediate.dense.std', 'bert.encoder.layer.11.intermediate.dense.w_gate', 'bert.encoder.layer.4.intermediate.dense.std', 'bert.encoder.layer.2.output.dense.w_noise', 'bert.encoder.layer.11.output.dense.mean', 'bert.encoder.layer.1.output.dense.std']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /bert-base-uncased/resolve/main/tokenizer_config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f5b0e980130>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 962ca9da-944d-4036-bccf-8646c0d913c9)')' thrown while requesting HEAD https://huggingface.co/bert-base-uncased/resolve/main/tokenizer_config.json
+11/21/2023 09:45:10 - WARNING - huggingface_hub.utils._http -   '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /bert-base-uncased/resolve/main/tokenizer_config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f5b0e980130>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 962ca9da-944d-4036-bccf-8646c0d913c9)')' thrown while requesting HEAD https://huggingface.co/bert-base-uncased/resolve/main/tokenizer_config.json
+[INFO|configuration_utils.py:669] 2023-11-21 09:45:10,849 >> loading configuration file config.json from cache at /mnt/petrelfs/dongdaize.d/.cache/huggingface/hub/models--bert-base-uncased/snapshots/1dbc166cf8765166998eff31ade2eb64c8a40076/config.json
+[INFO|configuration_utils.py:725] 2023-11-21 09:45:10,850 >> Model config BertConfig {
+  "_name_or_path": "bert-base-uncased",
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_dropout": null,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.30.2",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 30522
+}
+
+[INFO|tokenization_utils_base.py:1823] 2023-11-21 09:45:10,857 >> loading file vocab.txt from cache at /mnt/petrelfs/dongdaize.d/.cache/huggingface/hub/models--bert-base-uncased/snapshots/1dbc166cf8765166998eff31ade2eb64c8a40076/vocab.txt
+[INFO|tokenization_utils_base.py:1823] 2023-11-21 09:45:10,857 >> loading file tokenizer.json from cache at /mnt/petrelfs/dongdaize.d/.cache/huggingface/hub/models--bert-base-uncased/snapshots/1dbc166cf8765166998eff31ade2eb64c8a40076/tokenizer.json
+[INFO|tokenization_utils_base.py:1823] 2023-11-21 09:45:10,858 >> loading file added_tokens.json from cache at None
+[INFO|tokenization_utils_base.py:1823] 2023-11-21 09:45:10,858 >> loading file special_tokens_map.json from cache at None
+[INFO|tokenization_utils_base.py:1823] 2023-11-21 09:45:10,858 >> loading file tokenizer_config.json from cache at /mnt/petrelfs/dongdaize.d/.cache/huggingface/hub/models--bert-base-uncased/snapshots/1dbc166cf8765166998eff31ade2eb64c8a40076/tokenizer_config.json
+[INFO|configuration_utils.py:669] 2023-11-21 09:45:10,862 >> loading configuration file config.json from cache at /mnt/petrelfs/dongdaize.d/.cache/huggingface/hub/models--bert-base-uncased/snapshots/1dbc166cf8765166998eff31ade2eb64c8a40076/config.json
+[INFO|configuration_utils.py:725] 2023-11-21 09:45:10,864 >> Model config BertConfig {
+  "_name_or_path": "bert-base-uncased",
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_dropout": null,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.30.2",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 30522
+}
+
+11/21/2023 09:45:11 - WARNING - datasets.arrow_dataset -   Loading cached processed dataset at /mnt/petrelfs/dongdaize.d/.cache/huggingface/datasets/glue/sst2/1.0.0/dacbe3125aa31d7f70367a07a8a9e72a5a0bfeb5fc42e75c9db75b96da6053ad/cache-55f96a0bf911b41e.arrow
+11/21/2023 09:45:11 - WARNING - datasets.arrow_dataset -   Loading cached processed dataset at /mnt/petrelfs/dongdaize.d/.cache/huggingface/datasets/glue/sst2/1.0.0/dacbe3125aa31d7f70367a07a8a9e72a5a0bfeb5fc42e75c9db75b96da6053ad/cache-180c7f8e0da2d84e.arrow
+11/21/2023 09:45:11 - WARNING - datasets.arrow_dataset -   Loading cached processed dataset at /mnt/petrelfs/dongdaize.d/.cache/huggingface/datasets/glue/sst2/1.0.0/dacbe3125aa31d7f70367a07a8a9e72a5a0bfeb5fc42e75c9db75b96da6053ad/cache-8bc8c8a59f002645.arrow
+/mnt/petrelfs/dongdaize.d/workspace/sh/MEO/tasks/text-classification/./run_glue.py:520: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use 'evaluate.load' instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+  metric = load_metric("glue", data_args.task_name, cache_dir=model_args.cache_dir)
+11/21/2023 10:13:16 - WARNING - datasets.load -   Using the latest cached version of the module from /mnt/petrelfs/dongdaize.d/.cache/huggingface/modules/datasets_modules/metrics/glue/91f3cfc5498873918ecf119dbf806fb10815786c84f41b85a5d3c47c1519b343 (last modified on Tue Nov 21 07:34:08 2023) since it couldn't be found locally at glue, or remotely on the Hugging Face Hub.
+11/21/2023 10:13:19 - INFO - __main__ -   *** Evaluate ***
+[INFO|trainer.py:776] 2023-11-21 10:13:19,653 >> The following columns in the evaluation set don't have a corresponding argument in `BertForSequenceClassification.forward` and have been ignored: sentence, idx. If sentence, idx are not expected by `BertForSequenceClassification.forward`,  you can safely ignore this message.
+[INFO|trainer.py:3200] 2023-11-21 10:13:19,658 >> ***** Running Evaluation *****
+[INFO|trainer.py:3202] 2023-11-21 10:13:19,659 >>   Num examples = 872
+[INFO|trainer.py:3205] 2023-11-21 10:13:19,659 >>   Batch size = 32
+{'eval_loss': 0.7582244873046875, 'eval_accuracy': 0.5103211009174312, 'eval_runtime': 5.4421, 'eval_samples_per_second': 160.232, 'eval_steps_per_second': 5.145}
+***** eval metrics *****
+  eval_accuracy           =     0.5103
+  eval_loss               =     0.7582
+  eval_runtime            = 0:00:05.44
+  eval_samples            =        872
+  eval_samples_per_second =    160.232
+  eval_steps_per_second   =      5.145
