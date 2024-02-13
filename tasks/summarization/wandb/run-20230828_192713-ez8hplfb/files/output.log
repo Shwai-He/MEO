@@ -1,6 +1,0 @@
-***** eval metrics *****
-  eval_loss               =     2.5126
-  eval_runtime            = 0:00:54.64
-  eval_samples            =       1600
-  eval_samples_per_second =     29.278
-  eval_steps_per_second   =       1.83
