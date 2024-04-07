@@ -8,6 +8,11 @@ Shwai He, Run-Ze Fan, Liang Ding, Li Shen, Tianyi Zhou, Dacheng Tao
 EMNLP 2023 Main Conference. 
 ```
 
+<p align="center">
+  <img src="Figures/MEO.png" width="800">  
+</p>
+
+
 ## Requirements
 - torch==1.13.1
 - transformers==4.17.0
