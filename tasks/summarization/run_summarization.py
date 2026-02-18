@@ -433,6 +433,8 @@ def main():
         if data_args.test_file is not None:
             data_files["test"] = data_args.test_file
             extension = data_args.test_file.split(".")[-1]
+        if not data_files:
+            raise ValueError("No data files were provided.")
         datasets = load_dataset(extension, data_files=data_files, cache_dir=model_args.cache_dir)
     # See more about loading any type of standard or custom dataset (from files, python dict, pandas DataFrame, etc) at
     # https://huggingface.co/docs/datasets/loading_datasets.html.
@@ -510,11 +512,15 @@ def main():
 
     # Preprocessing the datasets.
     # We need to tokenize inputs and targets.
-    if training_args.do_train:
+    if training_args.do_train and "train" in datasets:
         column_names = datasets["train"].column_names
-    elif training_args.do_eval:
+    elif training_args.do_eval and "validation" in datasets:
         column_names = datasets["validation"].column_names
-    elif training_args.do_predict:
+    elif training_args.do_predict and "test" in datasets:
+        column_names = datasets["test"].column_names
+    elif "validation" in datasets:
+        column_names = datasets["validation"].column_names
+    elif "test" in datasets:
         column_names = datasets["test"].column_names
     else:
         logger.info("There is nothing to do. Please pass `do_train`, `do_eval` and/or `do_predict`.")

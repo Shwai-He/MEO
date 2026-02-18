@@ -88,6 +88,16 @@ summarization_name_mapping = {
     "wiki_summary": ("article", "highlights"),
 }
 
+def str2bool(value):
+    if isinstance(value, bool):
+        return value
+    value = value.lower()
+    if value in {"true", "1", "yes", "y", "t"}:
+        return True
+    if value in {"false", "0", "no", "n", "f"}:
+        return False
+    raise argparse.ArgumentTypeError(f"Invalid boolean value: {value}")
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Finetune a transformers model on a text classification task")
@@ -111,7 +121,7 @@ def parse_args():
     )
     parser.add_argument(
         "--ignore_pad_token_for_loss",
-        type=bool,
+        type=str2bool,
         default=True,
         help="Whether to ignore the tokens corresponding to " "padded labels in the loss computation or not.",
     )
@@ -135,7 +145,7 @@ def parse_args():
         help="The number of processes to use for the preprocessing.",
     )
     parser.add_argument(
-        "--overwrite_cache", type=bool, default=None, help="Overwrite the cached training and evaluation sets"
+        "--overwrite_cache", type=str2bool, default=False, help="Overwrite the cached training and evaluation sets"
     )
     parser.add_argument(
         "--max_target_length",
@@ -314,7 +324,7 @@ def generate(args, config, eval_dataloader, model, accelerator, tokenizer, metri
         "use_cache": True,
     }
 
-    print("+++++++++++++++++++++++++++ generate +++++++++++++++++++++++++++ ")
+    logger.info("Start generation")
 
     def postprocess_text(preds, labels):
         preds = [pred.strip() for pred in preds]
@@ -430,10 +440,11 @@ def main():
             data_files["train"] = args.train_file
         if args.validation_file is not None:
             data_files["validation"] = args.validation_file
-        extension = args.train_file.split(".")[-1]
+        if args.train_file is not None:
+            extension = args.train_file.split(".")[-1]
+        else:
+            extension = args.validation_file.split(".")[-1]
         raw_datasets = load_dataset(extension, data_files=data_files)
-
-    del raw_datasets['train']
 
     # See more about loading any type of standard or custom dataset (from files, python dict, pandas DataFrame, etc) at
     # https://huggingface.co/docs/datasets/loading_datasets.html.
@@ -486,7 +497,14 @@ def main():
 
     # Preprocessing the datasets.
     # First we tokenize all the texts.
-    column_names = raw_datasets["train"].column_names
+    if "train" in raw_datasets:
+        column_names = raw_datasets["train"].column_names
+    elif "validation" in raw_datasets:
+        column_names = raw_datasets["validation"].column_names
+    elif "test" in raw_datasets:
+        column_names = raw_datasets["test"].column_names
+    else:
+        raise ValueError("No usable split found in dataset. Expected one of: train/validation/test.")
 
     # Get the column names for input/target.
     dataset_columns = summarization_name_mapping.get(args.dataset_name, None)
@@ -540,21 +558,28 @@ def main():
     processed_datasets = raw_datasets.map(
         preprocess_function,
         batched=True,
+        num_proc=args.preprocessing_num_workers,
         remove_columns=column_names,
         load_from_cache_file=not args.overwrite_cache,
         desc="Running tokenizer on dataset",
     )
 
-    train_dataset = processed_datasets["train"]
-    eval_dataset = processed_datasets["validation"]
-    test_dataset = processed_datasets["test"]
+    if "train" in processed_datasets:
+        train_dataset = processed_datasets["train"]
+    elif "validation" in processed_datasets:
+        train_dataset = processed_datasets["validation"]
+    else:
+        train_dataset = processed_datasets["test"]
+    eval_dataset = processed_datasets["validation"] if "validation" in processed_datasets else train_dataset
+    test_dataset = processed_datasets["test"] if "test" in processed_datasets else eval_dataset
 
     logger.info(len(train_dataset))
     logger.info(len(eval_dataset))
     logger.info(len(test_dataset))
 
     # Log a few random samples from the training set:
-    for index in random.sample(range(len(train_dataset)), 1):
+    sample_count = min(1, len(train_dataset))
+    for index in random.sample(range(len(train_dataset)), sample_count):
         logger.info(f"Sample {index} of the training set: {train_dataset[index]}.")
 
     label_pad_token_id = -100 if args.ignore_pad_token_for_loss else tokenizer.pad_token_id
@@ -577,8 +602,9 @@ def main():
     if args.use_prefix is not None:
         model = PrefixTuning(config, args, model)
 
-    for n, p in model.named_parameters():
-        print(n, p.requires_grad)
+    if args.debug:
+        for n, p in model.named_parameters():
+            logger.info("%s %s", n, p.requires_grad)
 
     # Optimizer
     # Split weights in two groups, one with weight decay and the other not.
@@ -606,6 +632,8 @@ def main():
 
     logger.info("========================== Test ======================")
     unwrapped_model = accelerator.unwrap_model(model)
+    if not os.path.exists(best_checkpoint_path):
+        raise FileNotFoundError(f"Checkpoint not found: {best_checkpoint_path}")
     unwrapped_model.load_state_dict(torch.load(best_checkpoint_path))
     unwrapped_model.to(model.device)
     unwrapped_model.eval()
