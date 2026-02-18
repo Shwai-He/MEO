@@ -112,6 +112,10 @@ class DataTrainingArguments:
     overwrite_cache: bool = field(
         default=False, metadata={"help": "Overwrite the cached preprocessed datasets or not."}
     )
+    preprocessing_num_workers: Optional[int] = field(
+        default=None,
+        metadata={"help": "Number of worker processes to use for dataset preprocessing."},
+    )
     pad_to_max_length: bool = field(
         default=True,
         metadata={
@@ -342,8 +346,9 @@ def main():
 
         if data_args.train_file.endswith(".csv") or data_args.train_file.endswith(".tsv"):
             # Loading a dataset from local csv files
+            separator = "\t" if data_args.train_file.endswith(".tsv") else ","
             datasets = load_dataset("csv", data_files=data_files, cache_dir=model_args.cache_dir,
-                                    **{'sep': '\t', 'header': None})
+                                    **{"sep": separator, "header": None})
         else:
             # Loading a dataset from local json files
             datasets = load_dataset("json", data_files=data_files, cache_dir=model_args.cache_dir)
@@ -485,6 +490,7 @@ def main():
     datasets = datasets.map(
         preprocess_function,
         batched=True,
+        num_proc=data_args.preprocessing_num_workers,
         load_from_cache_file=not data_args.overwrite_cache,
         # load_from_cache_file=False,
         desc="Running tokenizer on dataset",
@@ -503,7 +509,7 @@ def main():
         if data_args.max_eval_samples is not None:
             eval_dataset = eval_dataset.select(range(data_args.max_eval_samples))
 
-    if training_args.do_predict or data_args.task_name is not None or data_args.test_file is not None:
+    if training_args.do_predict:
         if "test" not in datasets and "test_matched" not in datasets:
             raise ValueError("--do_predict requires a test dataset")
         predict_dataset = datasets["test_matched" if data_args.task_name == "mnli" else "test"]
@@ -512,7 +518,8 @@ def main():
 
     # Log a few random samples from the training set:
     if training_args.do_train:
-        for index in random.sample(range(len(train_dataset)), 3):
+        sample_count = min(3, len(train_dataset))
+        for index in random.sample(range(len(train_dataset)), sample_count):
             logger.info(f"Sample {index} of the training set: {train_dataset[index]}.")
 
     # Get the metric function
@@ -614,7 +621,8 @@ def main():
 
         for predict_dataset, task in zip(predict_datasets, tasks):
             # Removing the `label` columns because it contains -1 and Trainer won't like that.
-            predict_dataset.remove_columns_("label")
+            if "label" in predict_dataset.column_names:
+                predict_dataset = predict_dataset.remove_columns("label")
             predictions = trainer.predict(predict_dataset, metric_key_prefix="predict").predictions
             predictions = np.squeeze(predictions) if is_regression else np.argmax(predictions, axis=1)
 

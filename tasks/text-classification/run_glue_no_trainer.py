@@ -327,7 +327,8 @@ def main():
     eval_dataset = processed_datasets["validation_matched" if args.task_name == "mnli" else "validation"]
 
     # Log a few random samples from the training set:
-    for index in random.sample(range(len(train_dataset)), 3):
+    sample_count = min(3, len(train_dataset))
+    for index in random.sample(range(len(train_dataset)), sample_count):
         logger.info(f"Sample {index} of the training set: {train_dataset[index]}.")
 
     # DataLoaders creation:
