@@ -60,7 +60,6 @@ from effectune.old_options import *
 from effectune.prefix_tuning import PrefixTuning
 from effectune.utils import log_metrics, get_aggerators
 
-import pdb
 logger = logging.getLogger(__name__)
 require_version("datasets>=1.8.0", "To fix: pip install -r examples/pytorch/summarization/requirements.txt")
 
@@ -92,6 +91,16 @@ summarization_name_mapping = {
     "wiki_summary": ("article", "highlights"),
 }
 
+def str2bool(value):
+    if isinstance(value, bool):
+        return value
+    value = value.lower()
+    if value in {"true", "1", "yes", "y", "t"}:
+        return True
+    if value in {"false", "0", "no", "n", "f"}:
+        return False
+    raise argparse.ArgumentTypeError(f"Invalid boolean value: {value}")
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Finetune a transformers model on a text classification task")
@@ -115,7 +124,7 @@ def parse_args():
     )
     parser.add_argument(
         "--ignore_pad_token_for_loss",
-        type=bool,
+        type=str2bool,
         default=True,
         help="Whether to ignore the tokens corresponding to " "padded labels in the loss computation or not.",
     )
@@ -139,7 +148,7 @@ def parse_args():
         help="The number of processes to use for the preprocessing.",
     )
     parser.add_argument(
-        "--overwrite_cache", type=bool, default=None, help="Overwrite the cached training and evaluation sets"
+        "--overwrite_cache", type=str2bool, default=False, help="Overwrite the cached training and evaluation sets"
     )
     parser.add_argument(
         "--max_target_length",
@@ -281,8 +290,18 @@ def parse_args():
         choices=MODEL_TYPES,
     )
     parser.add_argument("--cache_dir", type=str, default=None)
-    parser.add_argument("--do_train", type=bool, default=True)
-    parser.add_argument("--do_predict", type=bool, default=False)
+    parser.add_argument(
+        "--do_train",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Whether to run training.",
+    )
+    parser.add_argument(
+        "--do_predict",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Whether to run prediction on the test split.",
+    )
     parser.add_argument("--fp16", action="store_true", default=False)
     parser.add_argument("--debug", type=int, default=0)
     parser.add_argument("--log_intervals", type=int, default=100)
@@ -308,7 +327,7 @@ def parse_args():
     if args.output_dir is not None:
         os.makedirs(args.output_dir, exist_ok=True)
 
-    print(args)
+    logger.info(args)
 
     return args
 
@@ -324,7 +343,7 @@ def generate(args, config, eval_dataloader, model, accelerator, tokenizer, metri
         "use_cache": True,
     }
 
-    print("+++++++++++++++++++++++++++ generate +++++++++++++++++++++++++++ ")
+    logger.info("Start generation for %s", opt_prefix)
 
     def postprocess_text(preds, labels):
         str_preds = [pred.strip() for pred in preds]
@@ -445,7 +464,10 @@ def main():
             data_files["train"] = args.train_file
         if args.validation_file is not None:
             data_files["validation"] = args.validation_file
-        extension = args.train_file.split(".")[-1]
+        if args.train_file is not None:
+            extension = args.train_file.split(".")[-1]
+        else:
+            extension = args.validation_file.split(".")[-1]
         raw_datasets = load_dataset(extension, data_files=data_files)
     # See more about loading any type of standard or custom dataset (from files, python dict, pandas DataFrame, etc) at
     # https://huggingface.co/docs/datasets/loading_datasets.html.
@@ -499,7 +521,14 @@ def main():
 
     # Preprocessing the datasets.
     # First we tokenize all the texts.
-    column_names = raw_datasets["train"].column_names
+    if args.do_train and "train" in raw_datasets:
+        column_names = raw_datasets["train"].column_names
+    elif "validation" in raw_datasets:
+        column_names = raw_datasets["validation"].column_names
+    elif "test" in raw_datasets:
+        column_names = raw_datasets["test"].column_names
+    else:
+        raise ValueError("No usable split found in dataset. Expected one of: train/validation/test.")
 
     # Get the column names for input/target.
     dataset_columns = summarization_name_mapping.get(args.dataset_name, None)
@@ -590,10 +619,14 @@ def main():
 
         train_dataset = processed_datasets["train"]
         eval_dataset = processed_datasets["validation"]
-        test_dataset = processed_datasets["test"]
+        if "test" in processed_datasets:
+            test_dataset = processed_datasets["test"]
+        else:
+            logger.warning("No `test` split found. Falling back to validation split for test-time evaluation.")
+            test_dataset = processed_datasets["validation"]
 
-        if args.debug:
-            test_dataset = raw_datasets['test'].map(
+        if args.debug and "test" in raw_datasets:
+            test_dataset = raw_datasets["test"].map(
                 preprocess_function_full,
                 batched=True,
                 remove_columns=column_names,
@@ -614,13 +647,15 @@ def main():
         train_dataloader = accelerator.prepare_data_loader(train_dataloader)
         eval_dataloader = accelerator.prepare_data_loader(eval_dataloader)
     elif args.do_predict:
-        test_dataset = raw_datasets['test'].map(
-        preprocess_function,
-        batched=True,
-        remove_columns=column_names,
-        load_from_cache_file=not args.overwrite_cache,
-        desc="Running tokenizer on dataset",
-    )
+        if "test" not in raw_datasets:
+            raise ValueError("--do_predict requires a dataset with `test` split.")
+        test_dataset = raw_datasets["test"].map(
+            preprocess_function,
+            batched=True,
+            remove_columns=column_names,
+            load_from_cache_file=not args.overwrite_cache,
+            desc="Running tokenizer on dataset",
+        )
         logger.info(len(test_dataset))
 
         test_dataloader = DataLoader(test_dataset, collate_fn=data_collator, batch_size=args.per_device_eval_batch_size)
@@ -635,8 +670,9 @@ def main():
     if args.use_prefix != "none":
         model = PrefixTuning(config, args, model)
 
-    for n, p in model.named_parameters():
-        print(n, p.requires_grad)
+    if args.debug:
+        for n, p in model.named_parameters():
+            logger.info("%s %s", n, p.requires_grad)
 
     # Optimizer
     # Split weights in two groups, one with weight decay and the other not.

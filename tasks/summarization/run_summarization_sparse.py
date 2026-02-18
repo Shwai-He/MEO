@@ -375,13 +375,13 @@ def main():
     try:
         attn_gate = float(tune_args.attn_gate)
         tune_args.attn_gate = attn_gate
-    except:
+    except (TypeError, ValueError):
         pass
 
     try:
         ffn_gate = float(tune_args.ffn_gate)
         tune_args.ffn_gate = ffn_gate
-    except:
+    except (TypeError, ValueError):
         pass
 
     # put useful args into config: these arguments will be used in models, thus adding them to config
