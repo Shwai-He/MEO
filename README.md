@@ -1,13 +1,14 @@
-# 🚀 Merging Experts into One (MEO): Improving Computational Efficiency of Mixture of Experts
+# 🚀 Merging Experts into One: Improving Computational Efficiency of Mixture of Experts
 
-[![Paper](https://img.shields.io/badge/Paper-EMNLP%202023-blue)](https://aclanthology.org/2023.emnlp-main.907)
+[![Paper](https://img.shields.io/badge/Paper-ACL_Anthology-blue)](https://aclanthology.org/2023.emnlp-main.907)
+[![Venue](https://img.shields.io/badge/EMNLP-2023-orange)](https://aclanthology.org/2023.emnlp-main.907)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-green)](#installation)
-[![Framework](https://img.shields.io/badge/Framework-PyTorch%20%7C%20Transformers-orange)](#installation)
 
-Official implementation of the EMNLP 2023 paper:
+### Shwai He, Run-Ze Fan, Liang Ding, Li Shen, Tianyi Zhou, Dacheng Tao
 
-> **Merging Experts into One: Improving Computational Efficiency of Mixture of Experts**  
-> Shwai He, Run-Ze Fan, Liang Ding, Li Shen, Tianyi Zhou, Dacheng Tao
+> This is the official implementation of the paper
+> [**Merging Experts into One: Improving Computational Efficiency of Mixture of Experts**](https://aclanthology.org/2023.emnlp-main.907),
+> published at **EMNLP 2023 Main Conference**.
 
 <p align="center">
   <img src="Figures/MEO.png" width="860" alt="MEO overview"/>
