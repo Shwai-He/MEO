@@ -76,7 +76,7 @@ python tasks/text-classification/run_glue.py \
 ## 📊 Results
 
 <p align="center">
-  <img src="Figures/Results.png" width="860" alt="MEO results"/>
+  <img src="Figures/Results.png" width="680" alt="MEO results"/>
 </p>
 
 From the paper, MEO provides substantial efficiency gains while preserving performance, for example:
@@ -113,4 +113,4 @@ For full setup details, please refer to the paper and scripts in this repository
 
 ## 📬 Contact
 
-For questions or collaboration, please open an issue in this repository.
+For questions or collaboration, please contact: `shwaihe@umd.edu`.
