@@ -1,45 +1,94 @@
-# Merging Experts into One: Improving Computational Efficiency of Mixture of Experts
-The source code of "Merging Experts into One: Improving Computational Efficiency of Mixture of Experts
- (EMNLP 2023)":
+# 🚀 Merging Experts into One (MEO): Improving Computational Efficiency of Mixture of Experts
 
- ```
-Merging Experts into One: Improving Computational Efficiency of Mixture of Experts
-Shwai He, Run-Ze Fan, Liang Ding, Li Shen, Tianyi Zhou, Dacheng Tao
-EMNLP 2023 Main Conference. 
-```
+[![Paper](https://img.shields.io/badge/Paper-EMNLP%202023-blue)](https://aclanthology.org/2023.emnlp-main.907)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-green)](#installation)
+[![Framework](https://img.shields.io/badge/Framework-PyTorch%20%7C%20Transformers-orange)](#installation)
+
+Official implementation of the EMNLP 2023 paper:
+
+> **Merging Experts into One: Improving Computational Efficiency of Mixture of Experts**  
+> Shwai He, Run-Ze Fan, Liang Ding, Li Shen, Tianyi Zhou, Dacheng Tao
 
 <p align="center">
-  <img src="Figures/MEO.png" width="800">  
+  <img src="Figures/MEO.png" width="860" alt="MEO overview"/>
 </p>
 
+## 📰 News
 
-## Requirements
-- torch==1.13.1
-- transformers==4.17.0
-- tokenizers==0.10.1
-- nltk==3.5
+- Dec 2023: Paper accepted at EMNLP 2023 Main Conference.
+- Feb 2026: README updated with cleaner structure and quick-start workflow.
 
-## Usage
+## 🤔 Why MEO
 
-Run BERT on GLUE for text classification: 
+Sparse Mixture-of-Experts (MoE) improves model capacity and quality, but activating multiple experts usually increases computation cost.
 
-`tasks/text-classification/run_glue.py`; 
+MEO addresses this by **merging multiple selected experts into one effective expert computation path**, aiming to keep multi-expert benefits while reducing runtime overhead.
 
-Run GPT-2 on Wikitext for language modeling: 
+## 🧠 Core Idea
 
-`tasks/language-modeling/run_clm.py`; 
+- ✅ **Multi-expert selection is beneficial**, but naive execution is expensive.
+- ⚙️ **MEO merges selected experts into one computation**, reducing cost close to single-expert inference.
+- 🔍 A **token-level attention block** is further introduced to improve token-level MEO efficiency and performance.
 
-Run T5 on SquAD for question-answering: 
+## 📁 Repository Structure
 
-`tasks/question-answering/run_seq2seq_qa.py`; 
+- `tasks/text-classification/`: GLUE and XNLI scripts.
+- `tasks/language-modeling/`: CLM/MLM/PLM scripts.
+- `tasks/question-answering/`: extractive and seq2seq QA scripts.
+- `tasks/summarization/`: summarization scripts and task notes.
+- `transformers/`: customized Transformers source used by this project.
+- `Figures/`: project figures and result visualizations.
 
-Run BART on XSum for summarization: 
+## 🛠️ Installation
 
-`tasks/summarization/run_summarization.py`; 
+### 1) 🧪 Create environment
 
-## Citation
-
+```bash
+conda create -n meo python=3.9 -y
+conda activate meo
 ```
+
+### 2) 📦 Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## ⚡ Quick Start
+
+You can run MEO-style experiments through task scripts below.
+
+| Task | Dataset/Benchmark | Entry Script |
+|---|---|---|
+| Text Classification | GLUE | `tasks/text-classification/run_glue.py` |
+| Language Modeling | WikiText (CLM) | `tasks/language-modeling/run_clm.py` |
+| Question Answering | SQuAD (seq2seq) | `tasks/question-answering/run_seq2seq_qa.py` |
+| Summarization | XSum | `tasks/summarization/run_summarization.py` |
+
+Example:
+
+```bash
+python tasks/text-classification/run_glue.py \
+  --model_name_or_path bert-base-uncased \
+  --task_name mrpc
+```
+
+## 📊 Results
+
+<p align="center">
+  <img src="Figures/Results.png" width="860" alt="MEO results"/>
+</p>
+
+From the paper, MEO provides substantial efficiency gains while preserving performance, for example:
+
+- 📉 FLOPs reduced from **72.0G** (vanilla MoE) to **28.6G** (MEO).
+- 🏆 On GLUE, token-level MEO reports **83.3%** average score vs **82.6%** for vanilla MoE in the reported setting.
+
+For full setup details, please refer to the paper and scripts in this repository.
+
+## 📚 Citation
+
+```bibtex
 @inproceedings{he-etal-2023-merging,
     title = "Merging Experts into One: Improving Computational Efficiency of Mixture of Experts",
     author = "He, Shwai  and
@@ -58,7 +107,10 @@ Run BART on XSum for summarization:
     publisher = "Association for Computational Linguistics",
     url = "https://aclanthology.org/2023.emnlp-main.907",
     doi = "10.18653/v1/2023.emnlp-main.907",
-    pages = "14685--14691",
-    abstract = "Scaling the size of language models usually leads to remarkable advancements in NLP tasks. But it often comes with a price of growing computational cost. Although a sparse Mixture of Experts (MoE) can reduce the cost by activating a small subset of parameters (e.g., one expert) for each input, its computation escalates significantly if increasing the number of activated experts, limiting its practical utility. Can we retain the advantages of adding more experts without substantially increasing the computational costs? In this paper, we first demonstrate the superiority of selecting multiple experts and then propose a computation-efficient approach called \textbf{Merging Experts into One} (MEO), which reduces the computation cost to that of a single expert. Extensive experiments show that MEO significantly improves computational efficiency, e.g., FLOPS drops from 72.0G of vanilla MoE to 28.6G (MEO). Moreover, we propose a token-level attention block that further enhances the efficiency and performance of token-level MEO, e.g., 83.3{\%} (MEO) vs. 82.6{\%} (vanilla MoE) average score on the GLUE benchmark. Our code will be released upon acceptance. Code will be released at: \url{https://github.com/Shwai-He/MEO}.",
+    pages = "14685--14691"
 }
 ```
+
+## 📬 Contact
+
+For questions or collaboration, please open an issue in this repository.
