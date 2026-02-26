@@ -20,9 +20,9 @@
 
 ## 📖 Introduction
 
-> This is the official implementation of the paper
-> [**Merging Experts into One: Improving Computational Efficiency of Mixture of Experts**](https://aclanthology.org/2023.emnlp-main.907),
-> published at **EMNLP 2023 Main Conference**.
+This is the official implementation of the paper
+[**Merging Experts into One: Improving Computational Efficiency of Mixture of Experts**](https://aclanthology.org/2023.emnlp-main.907),
+published at **EMNLP 2023 Main Conference**.
 
 <p align="center">
   <img src="Figures/MEO.png" width="860" alt="MEO overview"/>
