@@ -1,10 +1,24 @@
-# 🚀 Merging Experts into One: Improving Computational Efficiency of Mixture of Experts
+<h1 align="center">🚀 Merging Experts into One: Improving Computational Efficiency of Mixture of Experts</h1>
 
-[![Paper](https://img.shields.io/badge/Paper-ACL_Anthology-blue)](https://aclanthology.org/2023.emnlp-main.907)
-[![Venue](https://img.shields.io/badge/EMNLP-2023-orange)](https://aclanthology.org/2023.emnlp-main.907)
-[![Python](https://img.shields.io/badge/Python-3.9%2B-green)](#installation)
+<p align="center">
+  <a href="https://aclanthology.org/2023.emnlp-main.907"><img src="https://img.shields.io/badge/Paper-ACL_Anthology-blue" alt="Paper"></a>
+  <a href="https://aclanthology.org/2023.emnlp-main.907"><img src="https://img.shields.io/badge/EMNLP-2023-orange" alt="EMNLP 2023"></a>
+  <a href="#-installation"><img src="https://img.shields.io/badge/Python-3.9%2B-green" alt="Python 3.9+"></a>
+</p>
 
-### Shwai He, Run-Ze Fan, Liang Ding, Li Shen, Tianyi Zhou, Dacheng Tao
+<p align="center">
+  <a href="#-news">📰 News</a> •
+  <a href="#-why-meo">🤔 Why</a> •
+  <a href="#-core-idea">🧠 Core Idea</a> •
+  <a href="#-quick-start">⚡ Quick Start</a> •
+  <a href="#-installation">🛠️ Installation</a>
+</p>
+
+<p align="center">
+  Shwai He, Run-Ze Fan, Liang Ding, Li Shen, Tianyi Zhou, Dacheng Tao
+</p>
+
+## 📖 Introduction
 
 > This is the official implementation of the paper
 > [**Merging Experts into One: Improving Computational Efficiency of Mixture of Experts**](https://aclanthology.org/2023.emnlp-main.907),
