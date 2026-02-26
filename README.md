@@ -1,4 +1,4 @@
-<h1 align="center">🚀 Merging Experts into One: Improving Computational Efficiency of Mixture of Experts</h1>
+<h1 align="center">[EMNLP 2023] Merging Experts into One: Improving Computational Efficiency of Mixture of Experts</h1>
 
 <p align="center">
   <a href="https://aclanthology.org/2023.emnlp-main.907"><img src="https://img.shields.io/badge/Paper-ACL_Anthology-blue" alt="Paper"></a>
