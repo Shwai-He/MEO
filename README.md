@@ -1,7 +1,7 @@
 <h1 align="center">[EMNLP 2023] Merging Experts into One: Improving Computational Efficiency of Mixture of Experts</h1>
 
 <p align="center">
-  <a href="https://aclanthology.org/2023.emnlp-main.907"><img src="https://img.shields.io/badge/Paper-ACL_Anthology-blue" alt="Paper"></a>
+  <a href="https://arxiv.org/abs/2310.09832"><img src="https://img.shields.io/badge/arXiv-2310.09832-b31b1b.svg" alt="arXiv"></a>
   <a href="https://aclanthology.org/2023.emnlp-main.907"><img src="https://img.shields.io/badge/EMNLP-2023-orange" alt="EMNLP 2023"></a>
   <a href="#-installation"><img src="https://img.shields.io/badge/Python-3.9%2B-green" alt="Python 3.9+"></a>
 </p>
