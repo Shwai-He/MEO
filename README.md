@@ -7,15 +7,15 @@
 </p>
 
 <p align="center">
+  Shwai He, Run-Ze Fan, Liang Ding, Li Shen, Tianyi Zhou, Dacheng Tao
+</p>
+
+<p align="center">
   <a href="#-news">📰 News</a> •
   <a href="#-why-meo">🤔 Why</a> •
   <a href="#-core-idea">🧠 Core Idea</a> •
   <a href="#-quick-start">⚡ Quick Start</a> •
   <a href="#-installation">🛠️ Installation</a>
-</p>
-
-<p align="center">
-  Shwai He, Run-Ze Fan, Liang Ding, Li Shen, Tianyi Zhou, Dacheng Tao
 </p>
 
 ## 📖 Introduction
