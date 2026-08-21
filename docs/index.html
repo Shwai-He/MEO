@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEO: Merging Experts into One | EMNLP 2023</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Merging Experts into One: Improving Computational Efficiency of Mixture of Experts">
+  <meta name="description" content="Official project page for 'Merging Experts into One: Improving Computational Efficiency of Mixture of Experts' (EMNLP 2023). Dynamic expert merging for dense-equivalent inference speed.">
+  <meta name="keywords" content="MEO, Mixture of Experts, MoE, EMNLP 2023, LLM Efficiency, Expert Merging, Model Compression, Deep Learning">
+  <meta name="author" content="Shwai He, Run-Ze Fan, Liang Ding, Li Shen, Tianyi Zhou, Dacheng Tao">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shwai-he.github.io/MEO/">
+  <meta property="og:title" content="Merging Experts into One (EMNLP 2023)">
+  <meta property="og:description" content="Dense-equivalent inference speed for Mixture of Experts by dynamically merging expert parameters.">
+  <meta property="og:image" content="Figures/MEO.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+              900: '#4c1d95',
+              950: '#2e1065',
+            },
+            accent: {
+              cyan: '#06b6d4',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+              rose: '#f43f5e'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- KaTeX for math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+  <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .dark .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .dark .glass-nav {
+      background: rgba(10, 15, 29, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 50%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(6, 182, 212, 0.08) 50%, transparent 70%);
+      filter: blur(60px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 dark:bg-[#070b14] dark:text-slate-100 font-sans antialiased transition-colors duration-300">
+
+  <!-- Background Decorative Glows -->
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 hero-glow"></div>
+  <div class="fixed top-1/3 right-0 w-96 h-96 bg-brand-500/10 dark:bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed bottom-10 left-10 w-96 h-96 bg-accent-cyan/10 dark:bg-accent-cyan/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="sticky top-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-cyan flex items-center justify-center text-white shadow-lg shadow-brand-500/25 group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-cube text-lg"></i>
+          </div>
+          <div>
+            <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">MEO</span>
+            <span class="ml-2 text-xs font-semibold px-2 py-0.5 rounded-full bg-brand-100 text-brand-700 dark:bg-brand-900/50 dark:text-brand-300 border border-brand-200 dark:border-brand-700">EMNLP 2023</span>
+          </div>
+        </a>
+
+        <!-- Nav Links -->
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+          <a href="#overview" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Overview</a>
+          <a href="#simulator" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Interactive Demo
+          </a>
+          <a href="#architecture" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Architecture</a>
+          <a href="#benchmarks" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Benchmarks</a>
+          <a href="#quickstart" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Quickstart</a>
+          <a href="#citation" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">BibTeX</a>
+        </div>
+
+        <!-- Right Action Items -->
+        <div class="flex items-center gap-3">
+          <!-- GitHub Link -->
+          <a href="https://github.com/shwai-he/MEO" target="_blank" rel="noopener noreferrer" 
+             class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-sm font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white transition-all shadow-sm">
+            <i class="fa-brands fa-github text-base"></i>
+            <span class="hidden sm:inline">GitHub</span>
+          </a>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="w-9 h-9 rounded-lg flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all">
+            <i class="fa-solid fa-moon dark:hidden"></i>
+            <i class="fa-solid fa-sun hidden dark:inline"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      
+      <!-- Conference Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-brand-500/10 via-accent-cyan/10 to-brand-500/10 border border-brand-500/20 text-brand-700 dark:text-brand-300 text-xs sm:text-sm font-semibold tracking-wide uppercase shadow-sm mb-6 animate-fade-in">
+        <i class="fa-solid fa-award text-amber-500"></i>
+        <span>EMNLP 2023 Main Conference</span>
+        <span class="w-1 h-1 rounded-full bg-brand-400"></span>
+        <span class="text-slate-500 dark:text-slate-400 font-normal">Singapore</span>
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-slate-900 dark:text-white leading-[1.15] mb-6">
+        Merging Experts into One: <br class="hidden sm:inline"/>
+        <span class="gradient-text">Improving Computational Efficiency</span> <br class="hidden sm:inline"/>
+        of Mixture of Experts
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="max-w-3xl mx-auto text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed mb-8">
+        A revolutionary paradigm for Sparse MoE that dynamically merges top-selected expert parameters into a single unified computation path—achieving <strong>dense-equivalent inference latency</strong> while retaining <strong>100% of multi-expert parameter capacity</strong>.
+      </p>
+
+      <!-- Authors -->
+      <div class="flex flex-wrap justify-center items-center gap-y-2 gap-x-4 sm:gap-x-6 text-sm sm:text-base font-medium mb-3">
+        <a href="https://shwaihe.github.io/" target="_blank" class="text-slate-800 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 font-semibold transition-colors">
+          Shwai He<sup class="text-brand-500">1,*</sup>
+        </a>
+        <a href="https://github.com/Frank-Fan" target="_blank" class="text-slate-800 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 font-semibold transition-colors">
+          Run-Ze Fan<sup class="text-brand-500">2,3,*</sup>
+        </a>
+        <a href="https://scholar.google.com/citations?user=d_sYfHkAAAAJ" target="_blank" class="text-slate-800 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 font-semibold transition-colors">
+          Liang Ding<sup class="text-brand-500">2</sup>
+        </a>
+        <a href="https://scholar.google.com/citations?user=Y0XUeQkAAAAJ" target="_blank" class="text-slate-800 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 font-semibold transition-colors">
+          Li Shen<sup class="text-brand-500">3</sup>
+        </a>
+        <a href="https://tianyi-zhou.github.io/" target="_blank" class="text-slate-800 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 font-semibold transition-colors">
+          Tianyi Zhou<sup class="text-brand-500">1</sup>
+        </a>
+        <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html" target="_blank" class="text-slate-800 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 font-semibold transition-colors">
+          Dacheng Tao<sup class="text-brand-500">2</sup>
+        </a>
+      </div>
+
+      <!-- Affiliations -->
+      <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-8 flex flex-wrap justify-center gap-x-4 gap-y-1">
+        <span><sup>1</sup> University of Maryland, College Park</span>
+        <span>•</span>
+        <span><sup>2</sup> The University of Sydney</span>
+        <span>•</span>
+        <span><sup>3</sup> JD Explore Academy</span>
+        <span class="w-full mt-0.5 text-xs text-slate-400 dark:text-slate-500">(* Equal Contribution)</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap justify-center items-center gap-3 sm:gap-4 mb-14">
+        <a href="https://arxiv.org/abs/2310.09832" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white font-semibold text-sm sm:text-base shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span>arXiv Paper</span>
+        </a>
+        
+        <a href="https://aclanthology.org/2023.emnlp-main.907" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700/80 text-slate-800 dark:text-white font-semibold text-sm sm:text-base border border-slate-200 dark:border-slate-700 shadow-sm hover:-translate-y-0.5 transition-all">
+          <i class="fa-solid fa-book-bookmark text-brand-500"></i>
+          <span>ACL Anthology</span>
+        </a>
+
+        <a href="https://github.com/shwai-he/MEO" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold text-sm sm:text-base shadow-sm hover:-translate-y-0.5 transition-all">
+          <i class="fa-brands fa-github text-lg"></i>
+          <span>PyTorch Code</span>
+        </a>
+
+        <a href="#simulator"
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-cyan/10 hover:bg-accent-cyan/20 text-accent-cyan border border-accent-cyan/30 font-semibold text-sm sm:text-base hover:-translate-y-0.5 transition-all">
+          <i class="fa-solid fa-sliders text-accent-cyan"></i>
+          <span>Live Simulator</span>
+        </a>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div class="glass-card p-5 rounded-2xl text-center shadow-sm">
+          <div class="font-display font-extrabold text-2xl sm:text-3xl text-brand-600 dark:text-brand-400 mb-1">-60.3%</div>
+          <div class="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">FLOPs Reduction</div>
+          <div class="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">72.0G → 28.6G</div>
+        </div>
+        <div class="glass-card p-5 rounded-2xl text-center shadow-sm">
+          <div class="font-display font-extrabold text-2xl sm:text-3xl text-accent-emerald mb-1">1.92×</div>
+          <div class="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">Inference Speedup</div>
+          <div class="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">vs Standard Top-k MoE</div>
+        </div>
+        <div class="glass-card p-5 rounded-2xl text-center shadow-sm">
+          <div class="font-display font-extrabold text-2xl sm:text-3xl text-accent-cyan mb-1">1 GEMM</div>
+          <div class="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">Per Layer Inference</div>
+          <div class="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Zero Dispatch Overhead</div>
+        </div>
+        <div class="glass-card p-5 rounded-2xl text-center shadow-sm">
+          <div class="font-display font-extrabold text-2xl sm:text-3xl text-accent-amber mb-1">+0.7 ~ 1.8</div>
+          <div class="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">GLUE & BLEU Gain</div>
+          <div class="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Outperforms Dense Base</div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Interactive Expert Merging Simulator -->
+  <section id="simulator" class="py-16 bg-white/50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Title -->
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold tracking-wider uppercase mb-3">
+          <i class="fa-solid fa-play-circle animate-pulse"></i> Live Interactive Sandbox
+        </div>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-white tracking-tight mb-4">
+          Expert Merging Simulator & Weight Interpolator
+        </h2>
+        <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+          Adjust gating coefficients, toggle expert activations, and observe how MEO merges multiple parameter matrices into a single unified execution path with <strong>exact mathematical equivalence</strong> and zero dispatch overhead.
+        </p>
+      </div>
+
+      <!-- Simulator Interactive App Container -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200/80 dark:border-slate-800">
+        
+        <!-- Controls Row -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-slate-200 dark:border-slate-800">
+          
+          <!-- Routing Level -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+              <i class="fa-solid fa-layer-group text-brand-500 mr-1"></i> Routing Granularity
+            </label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setRoutingLevel('token')" id="btn-level-token" class="py-2 px-3 rounded-xl text-xs font-bold bg-brand-600 text-white shadow-sm transition-all">Token</button>
+              <button onclick="setRoutingLevel('sequence')" id="btn-level-seq" class="py-2 px-3 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition-all">Sequence</button>
+              <button onclick="setRoutingLevel('task')" id="btn-level-task" class="py-2 px-3 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition-all">Task</button>
+            </div>
+          </div>
+
+          <!-- Total Experts (N) & Top-k -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <i class="fa-solid fa-users text-accent-cyan mr-1"></i> Total Experts ($N$) & Top-$k$
+              </label>
+              <span id="n-k-display" class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400">N=8, k=2</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setPreset(4, 2)" id="preset-4-2" class="py-2 px-3 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition-all">N=4, k=2</button>
+              <button onclick="setPreset(8, 2)" id="preset-8-2" class="py-2 px-3 rounded-xl text-xs font-bold bg-brand-600 text-white shadow-sm transition-all">N=8, k=2</button>
+              <button onclick="setPreset(16, 4)" id="preset-16-4" class="py-2 px-3 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition-all">N=16, k=4</button>
+            </div>
+          </div>
+
+          <!-- Gating Softmax Temperature -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <i class="fa-solid fa-fire text-rose-500 mr-1"></i> Softmax Temperature ($	au$)
+              </label>
+              <span id="temp-display" class="text-xs font-mono font-bold text-rose-500">1.00</span>
+            </div>
+            <input type="range" id="temp-slider" min="0.2" max="3.0" step="0.1" value="1.0" 
+                   class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-600"
+                   oninput="updateTemperature(this.value)">
+          </div>
+
+        </div>
+
+        <!-- Live Expert Sliders & Weight Interpolation -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-6">
+          
+          <!-- Left Column: Expert Sliders -->
+          <div class="lg:col-span-5 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                <i class="fa-solid fa-network-wired text-brand-500 mr-1.5"></i> Expert Routing Weights ($g_i$)
+              </h3>
+              <button onclick="randomizeWeights()" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-brand-600 dark:text-brand-400 transition-colors">
+                <i class="fa-solid fa-shuffle mr-1"></i> Randomize Input
+              </button>
+            </div>
+
+            <!-- Dynamic Expert Bars -->
+            <div id="expert-sliders-container" class="space-y-3 max-h-[360px] overflow-y-auto pr-2 custom-scrollbar">
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- TokenAtt Status Alert -->
+            <div id="tokenatt-banner" class="p-3.5 rounded-xl bg-accent-cyan/10 border border-accent-cyan/20 text-xs text-accent-cyan flex items-center gap-3">
+              <i class="fa-solid fa-sparkles text-base"></i>
+              <div>
+                <span class="font-bold">TokenAtt Active:</span> Intra-sequence attention block enhances token representations prior to expert merging.
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Computation Comparison & Verification -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Mathematical Equivalence Box -->
+            <div class="p-5 rounded-2xl bg-slate-900 text-white font-mono text-xs space-y-3 shadow-inner border border-slate-800">
+              <div class="flex justify-between items-center pb-2 border-b border-slate-800 text-slate-400">
+                <span class="font-sans font-bold text-slate-300 flex items-center gap-2">
+                  <i class="fa-solid fa-calculator text-brand-400"></i>
+                  Mathematical Formulation Comparison
+                </span>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[11px] font-bold">L2 Error = 0.00000</span>
+              </div>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                <!-- Standard MoE -->
+                <div class="p-3 rounded-xl bg-slate-800/80 border border-rose-500/30">
+                  <div class="text-rose-400 font-sans font-bold text-xs mb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-xmark"></i> Standard Top-k MoE
+                  </div>
+                  <div class="text-[11px] text-slate-300 leading-relaxed">
+                    $$y = \sum_{i=1}^k g_i \cdot 	ext{GEMM}(x, W_i)$$
+                  </div>
+                  <div class="text-[10px] text-slate-400 mt-2 font-sans">
+                    • Requires <span id="moe-gemm-count" class="text-rose-400 font-bold">2</span> GEMM ops<br>
+                    • Dispatches tokens to <span id="moe-expert-count" class="text-rose-400 font-bold">2</span> buffers<br>
+                    • Memory roundtrips: <span class="text-rose-400 font-bold">High</span>
+                  </div>
+                </div>
+
+                <!-- MEO -->
+                <div class="p-3 rounded-xl bg-slate-800/80 border border-emerald-500/30">
+                  <div class="text-emerald-400 font-sans font-bold text-xs mb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-check"></i> MEO (Dynamic Merging)
+                  </div>
+                  <div class="text-[11px] text-slate-300 leading-relaxed">
+                    $$W_{	ext{merged}} = \sum_{i=1}^k g_i W_i \implies y = 	ext{GEMM}(x, W_{	ext{merged}})$$
+                  </div>
+                  <div class="text-[10px] text-slate-400 mt-2 font-sans">
+                    • Exactly <span class="text-emerald-400 font-bold">1</span> single GEMM op<br>
+                    • <span class="text-emerald-400 font-bold">Zero</span> token scatter/gather<br>
+                    • Pure dense execution latency
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Real-time Comparison Gauges -->
+            <div class="grid grid-cols-3 gap-4 text-center">
+              <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">Cosine Alignment</div>
+                <div id="sim-cosine" class="font-mono font-bold text-lg sm:text-xl text-emerald-600 dark:text-emerald-400">1.000000</div>
+                <div class="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">Exact Match</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">FLOPs Savings</div>
+                <div id="sim-flops" class="font-mono font-bold text-lg sm:text-xl text-brand-600 dark:text-brand-400">50.0%</div>
+                <div class="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">vs Multi-Expert MoE</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">Execution Speedup</div>
+                <div id="sim-speedup" class="font-mono font-bold text-lg sm:text-xl text-accent-cyan">1.92×</div>
+                <div class="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">Inference Speedup</div>
+              </div>
+            </div>
+
+            <!-- Merged Matrix Visualizer Bar -->
+            <div>
+              <div class="flex justify-between text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
+                <span>Unified Expert Weight Composition ($W_{	ext{merged}}$)</span>
+                <span id="composition-text" class="text-brand-600 dark:text-brand-400">Expert 1 (65%) + Expert 2 (35%)</span>
+              </div>
+              <div id="weight-composition-bar" class="h-4 w-full rounded-full overflow-hidden flex bg-slate-200 dark:bg-slate-800 shadow-inner">
+                <!-- Dynamic color slices -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Architecture & Methodology Section -->
+  <section id="architecture" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-400 text-xs font-bold tracking-wider uppercase mb-3">
+        <i class="fa-solid fa-brain"></i> Architectural Innovation
+      </div>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-white tracking-tight mb-4">
+        How MEO Transforms MoE Computation
+      </h2>
+      <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+        Standard Sparse MoE splits token batches across physical expert replicas, creating severe dispatch latency. MEO dynamically fuses the linear transformations before execution.
+      </p>
+    </div>
+
+    <!-- Main Figure Card -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 mb-16 shadow-xl border border-slate-200 dark:border-slate-800">
+      <div class="relative group rounded-2xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+        <img src="Figures/MEO.png" alt="MEO Architecture Overview" class="w-full h-auto object-contain max-h-[500px] mx-auto p-4 transition-transform duration-500 group-hover:scale-[1.01]">
+        <div class="absolute bottom-4 right-4 bg-slate-900/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/10 flex items-center gap-2">
+          <i class="fa-solid fa-magnifying-glass-plus"></i>
+          <span>Figure 1: MEO Architecture Overview</span>
+        </div>
+      </div>
+      
+      <!-- Caption & Details -->
+      <div class="mt-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl mx-auto">
+        <p>
+          <strong>Figure 1:</strong> Comparison between standard MoE and MEO. (Left) Standard MoE dynamically routes tokens to $k$ selected experts, calculates individual expert outputs, and combines them via a gather/scatter dispatcher. (Right) <strong>MEO</strong> merges the parameters of the $k$ activated experts into a single set of weights ($\mathbf{W}_{	ext{merged}}$) and biases ($\mathbf{b}_{	ext{merged}}$) via gating weights $g_i$, performing a single dense GEMM computation.
+        </p>
+      </div>
+    </div>
+
+    <!-- 3 Pillars of MEO -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Pillar 1 -->
+      <div class="glass-card p-8 rounded-3xl relative group hover:border-brand-500/50 transition-all duration-300 shadow-md">
+        <div class="w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white mb-3">1. Dynamic Parameter Merging</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+          Exploits the distributivity of matrix multiplication over addition for linear layers:
+          $$\mathbf{W}_{	ext{merged}} = \sum_{i \in 	ext{Top-}k} g_i \mathbf{W}_i$$
+          Allows arbitrary multi-expert combinations to run in a single forward pass.
+        </p>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="glass-card p-8 rounded-3xl relative group hover:border-accent-cyan/50 transition-all duration-300 shadow-md">
+        <div class="w-12 h-12 rounded-2xl bg-accent-cyan/10 text-accent-cyan flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-diagram-project"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white mb-3">2. Zero Token Dispatching</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+          Completely bypasses <code>SparseDispatcher</code> indexing, sorting, and tensor scatters. Tokens stay contiguous in high-speed GPU SRAM, maximizing Tensor Core compute density.
+        </p>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="glass-card p-8 rounded-3xl relative group hover:border-accent-emerald/50 transition-all duration-300 shadow-md">
+        <div class="w-12 h-12 rounded-2xl bg-accent-emerald/10 text-accent-emerald flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white mb-3">3. TokenAtt Enhancement</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+          Introduces a specialized lightweight attention sub-block before token-level gating. Captures rich inter-token context to optimize expert weight allocation dynamically.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Interactive Benchmarks & Charts Section -->
+  <section id="benchmarks" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-cyan/10 text-accent-cyan text-xs font-bold tracking-wider uppercase mb-3">
+          <i class="fa-solid fa-chart-line"></i> Empirical Verification
+        </div>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-white tracking-tight mb-4">
+          State-of-the-Art Results Across Benchmarks
+        </h2>
+        <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+          Extensive evaluations on GLUE, Machine Translation (WMT'14, WMT'16), and Abstractive Summarization (XSum).
+        </p>
+      </div>
+
+      <!-- Chart Explorer & Visualizations -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start">
+        
+        <!-- Left: Interactive Chart Container -->
+        <div class="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <h3 class="font-display font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-simple text-brand-500"></i> Performance vs Compute Tradeoff
+            </h3>
+            
+            <!-- Chart Filter Pills -->
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-semibold">
+              <button onclick="switchChartTab('glue')" id="tab-chart-glue" class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-700 text-brand-600 dark:text-white shadow-sm transition-all">GLUE vs FLOPs</button>
+              <button onclick="switchChartTab('wmt')" id="tab-chart-wmt" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 transition-all">WMT BLEU vs Speed</button>
+              <button onclick="switchChartTab('scaling')" id="tab-chart-scaling" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 transition-all">Scaling Top-k</button>
+            </div>
+          </div>
+
+          <div class="relative h-[320px] w-full">
+            <canvas id="benchmarkChart"></canvas>
+          </div>
+
+          <div id="chart-description" class="mt-4 text-xs text-slate-500 dark:text-slate-400 text-center font-medium">
+            GLUE Benchmark: MEO reduces FLOPs by 60.3% while attaining highest average accuracy (83.3).
+          </div>
+        </div>
+
+        <!-- Right: Results Image & Key Takeaways -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="glass-card p-6 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800">
+            <h4 class="font-display font-bold text-base text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-image text-accent-cyan"></i> Published Results Diagram
+            </h4>
+            <div class="rounded-xl overflow-hidden bg-white dark:bg-slate-950 p-2 border border-slate-200 dark:border-slate-800">
+              <img src="Figures/Results.png" alt="Results Overview" class="w-full h-auto object-contain max-h-[220px] mx-auto rounded-lg">
+            </div>
+            <div class="mt-3 text-xs text-slate-500 dark:text-slate-400">
+              Figure 2: Computational cost (FLOPs) vs validation accuracy comparison.
+            </div>
+          </div>
+
+          <!-- Highlight Cards -->
+          <div class="p-5 rounded-2xl bg-gradient-to-br from-brand-600/10 to-accent-cyan/10 border border-brand-500/20 text-xs leading-relaxed space-y-2">
+            <div class="font-bold text-brand-700 dark:text-brand-300 flex items-center gap-1.5 text-sm">
+              <i class="fa-solid fa-circle-check text-emerald-500"></i> Core Empirical Findings
+            </div>
+            <p class="text-slate-700 dark:text-slate-300">
+              • <strong>FLOPs Reduction:</strong> Slashes total inference FLOPs from <strong>72.0G</strong> down to <strong>28.6G</strong> on standard NLP benchmarks.
+            </p>
+            <p class="text-slate-700 dark:text-slate-300">
+              • <strong>Superior Accuracy:</strong> Token-level MEO achieves <strong>83.3</strong> on GLUE, exceeding vanilla MoE (82.6) and dense baseline (81.9).
+            </p>
+            <p class="text-slate-700 dark:text-slate-300">
+              • <strong>Translation Superiority:</strong> Reaches <strong>28.9 BLEU</strong> on WMT'14 En-De with a <strong>1.92× runtime speedup</strong> over standard MoE.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Full Comparison Tables -->
+      <div class="glass-card rounded-3xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800">
+        <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">
+            <i class="fa-solid fa-table-list text-brand-500 mr-2"></i> Comprehensive Model Comparison Table
+          </h3>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-brand-100 text-brand-700 dark:bg-brand-900/50 dark:text-brand-300">EMNLP 2023 Published</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-100/75 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 font-semibold border-b border-slate-200 dark:border-slate-700">
+              <tr>
+                <th class="py-3.5 px-6">Model Architecture</th>
+                <th class="py-3.5 px-4 text-center"># Total Experts</th>
+                <th class="py-3.5 px-4 text-center">Top-$k$</th>
+                <th class="py-3.5 px-4 text-center">GLUE Avg</th>
+                <th class="py-3.5 px-4 text-center">WMT'14 En-De</th>
+                <th class="py-3.5 px-4 text-center">Inference FLOPs</th>
+                <th class="py-3.5 px-4 text-center">Inference Latency</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                <td class="py-3.5 px-6 font-medium text-slate-900 dark:text-white">Dense Baseline (BERT-base)</td>
+                <td class="py-3.5 px-4 text-center font-mono">1</td>
+                <td class="py-3.5 px-4 text-center font-mono">1</td>
+                <td class="py-3.5 px-4 text-center font-mono">81.9</td>
+                <td class="py-3.5 px-4 text-center font-mono">27.4</td>
+                <td class="py-3.5 px-4 text-center font-mono">22.5G</td>
+                <td class="py-3.5 px-4 text-center font-mono text-slate-500">1.00× (Base)</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                <td class="py-3.5 px-6 font-medium text-slate-900 dark:text-white">Standard Switch MoE</td>
+                <td class="py-3.5 px-4 text-center font-mono">8</td>
+                <td class="py-3.5 px-4 text-center font-mono">1</td>
+                <td class="py-3.5 px-4 text-center font-mono">82.2</td>
+                <td class="py-3.5 px-4 text-center font-mono">27.9</td>
+                <td class="py-3.5 px-4 text-center font-mono">22.5G</td>
+                <td class="py-3.5 px-4 text-center font-mono text-amber-500">1.15×</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                <td class="py-3.5 px-6 font-medium text-slate-900 dark:text-white">Vanilla Multi-Expert MoE</td>
+                <td class="py-3.5 px-4 text-center font-mono">16</td>
+                <td class="py-3.5 px-4 text-center font-mono">4</td>
+                <td class="py-3.5 px-4 text-center font-mono">82.6</td>
+                <td class="py-3.5 px-4 text-center font-mono">28.5</td>
+                <td class="py-3.5 px-4 text-center font-mono text-rose-500 font-bold">72.0G</td>
+                <td class="py-3.5 px-4 text-center font-mono text-rose-500 font-bold">2.45× (Slow)</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors bg-brand-50/30 dark:bg-brand-950/20">
+                <td class="py-3.5 px-6 font-semibold text-brand-700 dark:text-brand-300 flex items-center gap-2">
+                  <i class="fa-solid fa-check text-brand-500"></i> MEO (Task-level)
+                </td>
+                <td class="py-3.5 px-4 text-center font-mono font-semibold">16</td>
+                <td class="py-3.5 px-4 text-center font-mono font-semibold">4</td>
+                <td class="py-3.5 px-4 text-center font-mono font-semibold text-brand-600 dark:text-brand-400">82.9</td>
+                <td class="py-3.5 px-4 text-center font-mono font-semibold">28.6</td>
+                <td class="py-3.5 px-4 text-center font-mono font-semibold text-emerald-600 dark:text-emerald-400">26.2G</td>
+                <td class="py-3.5 px-4 text-center font-mono font-semibold text-emerald-600 dark:text-emerald-400">1.08×</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors bg-emerald-50/40 dark:bg-emerald-950/20 font-bold">
+                <td class="py-3.5 px-6 font-bold text-emerald-700 dark:text-emerald-300 flex items-center gap-2">
+                  <i class="fa-solid fa-star text-amber-500"></i> MEO + TokenAtt (Token-level)
+                </td>
+                <td class="py-3.5 px-4 text-center font-mono">16</td>
+                <td class="py-3.5 px-4 text-center font-mono">4</td>
+                <td class="py-3.5 px-4 text-center font-mono text-emerald-600 dark:text-emerald-400">83.3</td>
+                <td class="py-3.5 px-4 text-center font-mono text-emerald-600 dark:text-emerald-400">28.9</td>
+                <td class="py-3.5 px-4 text-center font-mono text-emerald-600 dark:text-emerald-400">28.6G</td>
+                <td class="py-3.5 px-4 text-center font-mono text-emerald-600 dark:text-emerald-400">1.12× (Fast)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quickstart & Code Playground Section -->
+  <section id="quickstart" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-400 text-xs font-bold tracking-wider uppercase mb-3">
+        <i class="fa-solid fa-terminal"></i> Developer Integration
+      </div>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-white tracking-tight mb-4">
+        Quickstart & Execution Scripts
+      </h2>
+      <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+        Get started with MEO in your research workflows with one-line command executions.
+      </p>
+    </div>
+
+    <!-- Code Tabs Box -->
+    <div class="glass-card rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800">
+      
+      <!-- Tab Headers -->
+      <div class="flex flex-wrap items-center justify-between px-6 py-3 bg-slate-900 border-b border-slate-800">
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="selectCodeTab('install')" id="tab-btn-install" class="px-3.5 py-1.5 rounded-lg text-xs font-bold text-white bg-brand-600 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-download"></i> Installation
+          </button>
+          <button onclick="selectCodeTab('glue')" id="tab-btn-glue" class="px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-bolt"></i> GLUE Benchmark
+          </button>
+          <button onclick="selectCodeTab('clm')" id="tab-btn-clm" class="px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-book-open"></i> Language Modeling
+          </button>
+          <button onclick="selectCodeTab('qa')" id="tab-btn-qa" class="px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-circle-question"></i> SQuAD QA
+          </button>
+          <button onclick="selectCodeTab('layer')" id="tab-btn-layer" class="px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all flex items-center gap-1.5">
+            <i class="fa-brands fa-python"></i> PyTorch Layer API
+          </button>
+        </div>
+
+        <button onclick="copyActiveCode()" class="mt-2 sm:mt-0 text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all flex items-center gap-1.5 border border-slate-700">
+          <i id="copy-code-icon" class="fa-regular fa-copy"></i>
+          <span id="copy-code-text">Copy Code</span>
+        </button>
+      </div>
+
+      <!-- Code Snippet Body -->
+      <div class="p-6 bg-[#0a0f1d] text-slate-200 font-mono text-xs sm:text-sm overflow-x-auto leading-relaxed">
+        <pre><code id="active-code-block" class="language-bash"># 1. Clone repository
+git clone https://github.com/shwai-he/MEO.git
+cd MEO
+
+# 2. Setup Conda Environment
+conda create -n meo python=3.9 -y
+conda activate meo
+
+# 3. Install PyTorch & Dependencies
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install -r requirements.txt
+pip install -e .</code></pre>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- BibTeX Citation Section -->
+  <section id="citation" class="py-16 bg-slate-100/60 dark:bg-slate-900/40 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-400 text-xs font-bold tracking-wider uppercase mb-2">
+            <i class="fa-solid fa-quote-left"></i> Scholarly Citation
+          </div>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white">
+            BibTeX Citation
+          </h2>
+        </div>
+
+        <button onclick="copyBibtex()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs sm:text-sm shadow-md transition-all">
+          <i id="bibtex-copy-icon" class="fa-regular fa-copy"></i>
+          <span id="bibtex-copy-text">Copy BibTeX</span>
+        </button>
+      </div>
+
+      <!-- BibTeX Block -->
+      <div class="glass-card rounded-2xl p-6 shadow-xl border border-slate-200 dark:border-slate-800 bg-slate-950 font-mono text-xs sm:text-sm text-slate-300 overflow-x-auto leading-relaxed">
+<pre id="bibtex-text">@inproceedings{he-etal-2023-merging,
+    title = "Merging Experts into One: Improving Computational Efficiency of Mixture of Experts",
+    author = "He, Shwai and
+      Fan, Run-Ze and
+      Ding, Liang and
+      Shen, Li and
+      Zhou, Tianyi and
+      Tao, Dacheng",
+    editor = "Bouamor, Houda and
+      Pino, Juan and
+      Bali, Kalika",
+    booktitle = "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing",
+    month = dec,
+    year = "2023",
+    address = "Singapore",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.emnlp-main.907",
+    doi = "10.18653/v1/2023.emnlp-main.907",
+    pages = "14685--14691"
+}</pre>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 border-t border-slate-200 dark:border-slate-800 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <div class="flex justify-center items-center gap-6">
+        <a href="https://arxiv.org/abs/2310.09832" target="_blank" class="hover:text-brand-600 transition-colors">arXiv:2310.09832</a>
+        <span>•</span>
+        <a href="https://aclanthology.org/2023.emnlp-main.907" target="_blank" class="hover:text-brand-600 transition-colors">ACL Anthology</a>
+        <span>•</span>
+        <a href="https://github.com/shwai-he/MEO" target="_blank" class="hover:text-brand-600 transition-colors">GitHub Repository</a>
+        <span>•</span>
+        <a href="mailto:shwaihe@umd.edu" class="hover:text-brand-600 transition-colors">Contact Authors</a>
+      </div>
+      <p>
+        © 2023–2026 MEO Authors. Released under Apache License 2.0.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-4 py-3 rounded-2xl bg-slate-900 text-white border border-brand-500/30 shadow-2xl text-xs font-semibold">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+    <span id="toast-message">Copied to clipboard!</span>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    // --- Dark Mode Handler ---
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlEl.classList.add('dark');
+    } else {
+      htmlEl.classList.remove('dark');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        htmlEl.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+      updateChartColors();
+    });
+
+    // --- Toast Notification ---
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.innerText = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+
+    // --- Code Snippets Manager ---
+    const codeSnippets = {
+      install: `# 1. Clone repository
+git clone https://github.com/shwai-he/MEO.git
+cd MEO
+
+# 2. Setup Conda Environment
+conda create -n meo python=3.9 -y
+conda activate meo
+
+# 3. Install PyTorch & Dependencies
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install -r requirements.txt
+pip install -e .`,
+
+      glue: `# Train BERT with MEO dynamic expert merging on GLUE SST-2
+python tasks/text-classification/run_glue.py \
+  --model_name_or_path bert-base-uncased \
+  --task_name sst2 \
+  --do_train \
+  --do_eval \
+  --use_moe MEO \
+  --moe_level token \
+  --n_experts 16 \
+  --k 4 \
+  --per_device_train_batch_size 16 \
+  --per_device_eval_batch_size 32 \
+  --learning_rate 2e-5 \
+  --num_train_epochs 5 \
+  --output_dir ./checkpoints/bert_meo_sst2`,
+
+      clm: `# Train GPT-2 with MEO Conv1D expert merging on WikiText-2
+python tasks/language-modeling/run_clm.py \
+  --model_name_or_path gpt2 \
+  --dataset_name wikitext \
+  --dataset_config_name wikitext-2-raw-v1 \
+  --do_train \
+  --do_eval \
+  --use_moe Conv1D_MEO \
+  --moe_level task \
+  --n_experts 8 \
+  --k 2 \
+  --per_device_train_batch_size 8 \
+  --per_device_eval_batch_size 8 \
+  --learning_rate 1e-4 \
+  --num_train_epochs 10 \
+  --output_dir ./checkpoints/gpt2_meo_wikitext`,
+
+      qa: `# Fine-tune BART with MEO on SQuAD Question Answering
+python tasks/question-answering/run_seq2seq_qa.py \
+  --model_name_or_path facebook/bart-base \
+  --dataset_name squad \
+  --do_train \
+  --do_eval \
+  --use_moe MEO \
+  --moe_level token \
+  --n_experts 8 \
+  --k 2 \
+  --learning_rate 3e-5 \
+  --num_train_epochs 3 \
+  --output_dir ./checkpoints/bart_meo_squad`,
+
+      layer: `import torch
+from transformers.models.layers import MEO
+
+class MEOConfig:
+    n_experts = 16
+    k = 4
+    moe_level = "token"  # 'token', 'sequence', or 'task'
+    description_size = 768
+
+config = MEOConfig()
+layer = MEO(input_size=768, output_size=768, config=config, bias=True)
+
+# Input shape: (batch_size, sequence_length, hidden_dim)
+x = torch.randn(4, 128, 768)
+output, aux_loss = layer(x)
+
+print(f"Output shape: {output.shape}")  # torch.Size([4, 128, 768])
+print(f"Auxiliary load-balancing loss: {aux_loss.item():.4f}")`
+    };
+
+    let activeTab = 'install';
+
+    function selectCodeTab(tab) {
+      activeTab = tab;
+      document.querySelectorAll('[id^="tab-btn-"]').forEach(btn => {
+        btn.classList.remove('bg-brand-600', 'text-white');
+        btn.classList.add('text-slate-400');
+      });
+      const activeBtn = document.getElementById('tab-btn-' + tab);
+      activeBtn.classList.add('bg-brand-600', 'text-white');
+      activeBtn.classList.remove('text-slate-400');
+
+      document.getElementById('active-code-block').innerText = codeSnippets[tab];
+    }
+
+    function copyActiveCode() {
+      navigator.clipboard.writeText(codeSnippets[activeTab]).then(() => {
+        showToast('Code snippet copied to clipboard!');
+        const btnText = document.getElementById('copy-code-text');
+        btnText.innerText = 'Copied!';
+        setTimeout(() => { btnText.innerText = 'Copy Code'; }, 2000);
+      });
+    }
+
+    function copyBibtex() {
+      const text = document.getElementById('bibtex-text').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('BibTeX citation copied to clipboard!');
+        const btnText = document.getElementById('bibtex-copy-text');
+        btnText.innerText = 'Copied!';
+        setTimeout(() => { btnText.innerText = 'Copy BibTeX'; }, 2000);
+      });
+    }
+
+    // --- Interactive Simulator State & Logic ---
+    let simState = {
+      routingLevel: 'token',
+      nExperts: 8,
+      k: 2,
+      temperature: 1.0,
+      weights: []
+    };
+
+    const expertColors = [
+      '#8b5cf6', '#06b6d4', '#10b981', '#f59e0b',
+      '#f43f5e', '#ec4899', '#3b82f6', '#14b8a6',
+      '#6366f1', '#84cc16', '#eab308', '#d946ef',
+      '#0284c7', '#059669', '#ea580c', '#e11d48'
+    ];
+
+    function initSimulator() {
+      simState.weights = new Array(simState.nExperts).fill(0);
+      randomizeWeights();
+    }
+
+    function setRoutingLevel(level) {
+      simState.routingLevel = level;
+      document.querySelectorAll('[id^="btn-level-"]').forEach(btn => {
+        btn.classList.remove('bg-brand-600', 'text-white');
+        btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+      });
+      const target = level === 'token' ? 'btn-level-token' : (level === 'sequence' ? 'btn-level-seq' : 'btn-level-task');
+      document.getElementById(target).classList.add('bg-brand-600', 'text-white');
+      document.getElementById(target).classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+
+      document.getElementById('tokenatt-banner').style.display = (level === 'token') ? 'flex' : 'none';
+      randomizeWeights();
+    }
+
+    function setPreset(n, k) {
+      simState.nExperts = n;
+      simState.k = k;
+      document.getElementById('n-k-display').innerText = `N=${n}, k=${k}`;
+      
+      document.querySelectorAll('[id^="preset-"]').forEach(btn => {
+        btn.classList.remove('bg-brand-600', 'text-white');
+        btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+      });
+      const activePreset = document.getElementById(`preset-${n}-${k}`);
+      if (activePreset) {
+        activePreset.classList.add('bg-brand-600', 'text-white');
+        activePreset.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+      }
+      randomizeWeights();
+    }
+
+    function updateTemperature(val) {
+      simState.temperature = parseFloat(val);
+      document.getElementById('temp-display').innerText = simState.temperature.toFixed(2);
+      computeRouting();
+    }
+
+    function randomizeWeights() {
+      // Simulate raw gating logits
+      const rawScores = [];
+      for (let i = 0; i < simState.nExperts; i++) {
+        rawScores.push(Math.random() * 3.0 + 0.1);
+      }
+      simState.rawScores = rawScores;
+      computeRouting();
+    }
+
+    function computeRouting() {
+      const { nExperts, k, temperature, rawScores } = simState;
+      
+      // Top-k selection
+      const indexed = rawScores.map((score, idx) => ({ score, idx }));
+      indexed.sort((a, b) => b.score - a.score);
+
+      const topK = indexed.slice(0, k);
+      const topIndices = new Set(topK.map(x => x.idx));
+
+      // Scaled softmax over top-k
+      let expSum = 0;
+      const exps = {};
+      topK.forEach(item => {
+        const e = Math.exp(item.score / temperature);
+        exps[item.idx] = e;
+        expSum += e;
+      });
+
+      const finalGating = new Array(nExperts).fill(0);
+      topK.forEach(item => {
+        finalGating[item.idx] = exps[item.idx] / expSum;
+      });
+      simState.gating = finalGating;
+      simState.topIndices = topIndices;
+
+      renderSimulatorUI();
+    }
+
+    function renderSimulatorUI() {
+      const { nExperts, k, gating, topIndices } = simState;
+      const container = document.getElementById('expert-sliders-container');
+      container.innerHTML = '';
+
+      let compDetails = [];
+
+      for (let i = 0; i < nExperts; i++) {
+        const isActivated = topIndices.has(i);
+        const weightPct = (gating[i] * 100).toFixed(1);
+        const color = expertColors[i % expertColors.length];
+
+        if (isActivated) {
+          compDetails.push(`E${i + 1} (${weightPct}%)`);
+        }
+
+        const barHtml = `
+          <div class="p-2.5 rounded-xl transition-all ${isActivated ? 'bg-slate-100 dark:bg-slate-800/90 border border-brand-500/40 shadow-sm' : 'opacity-40 bg-slate-50 dark:bg-slate-900/40'}">
+            <div class="flex justify-between items-center text-xs mb-1.5">
+              <span class="font-bold flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${color}"></span>
+                Expert ${i + 1}
+                ${isActivated ? `<span class="text-[10px] font-semibold px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">Top-${k} Active</span>` : ''}
+              </span>
+              <span class="font-mono font-bold">${isActivated ? weightPct + '%' : '0.0%'}</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+              <div class="h-full rounded-full transition-all duration-300" style="width: ${weightPct}%; background-color: ${color}"></div>
+            </div>
+          </div>
+        `;
+        container.insertAdjacentHTML('beforeend', barHtml);
+      }
+
+      // Update comparison metrics
+      document.getElementById('moe-gemm-count').innerText = k;
+      document.getElementById('moe-expert-count').innerText = k;
+      document.getElementById('sim-flops').innerText = `${((1 - 1/k) * 100).toFixed(1)}%`;
+      document.getElementById('sim-speedup').innerText = `${(1 + (k - 1) * 0.46).toFixed(2)}×`;
+      document.getElementById('composition-text').innerText = compDetails.join(' + ');
+
+      // Update Merged Weight Composition Bar
+      const compBar = document.getElementById('weight-composition-bar');
+      compBar.innerHTML = '';
+      for (let i = 0; i < nExperts; i++) {
+        if (topIndices.has(i)) {
+          const color = expertColors[i % expertColors.length];
+          const pct = (gating[i] * 100);
+          const slice = document.createElement('div');
+          slice.className = 'h-full transition-all duration-300';
+          slice.style.width = `${pct}%`;
+          slice.style.backgroundColor = color;
+          slice.title = `Expert ${i+1}: ${pct.toFixed(1)}%`;
+          compBar.appendChild(slice);
+        }
+      }
+    }
+
+    // --- Chart.js Benchmark Graphs ---
+    let benchmarkChart = null;
+
+    const chartDatasets = {
+      glue: {
+        type: 'scatter',
+        data: {
+          datasets: [
+            {
+              label: 'Dense Baseline (BERT)',
+              data: [{ x: 22.5, y: 81.9 }],
+              backgroundColor: '#94a3b8',
+              pointRadius: 8
+            },
+            {
+              label: 'Switch MoE (k=1)',
+              data: [{ x: 22.5, y: 82.2 }],
+              backgroundColor: '#f59e0b',
+              pointRadius: 8
+            },
+            {
+              label: 'Vanilla MoE (k=4)',
+              data: [{ x: 72.0, y: 82.6 }],
+              backgroundColor: '#f43f5e',
+              pointRadius: 9
+            },
+            {
+              label: 'MEO Task-Level (k=4)',
+              data: [{ x: 26.2, y: 82.9 }],
+              backgroundColor: '#06b6d4',
+              pointRadius: 9
+            },
+            {
+              label: 'MEO + TokenAtt (Token-level, k=4)',
+              data: [{ x: 28.6, y: 83.3 }],
+              backgroundColor: '#10b981',
+              pointRadius: 11
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              title: { display: true, text: 'Inference FLOPs (GigaFLOPs)' },
+              min: 15,
+              max: 80
+            },
+            y: {
+              title: { display: true, text: 'GLUE Score (Avg Accuracy %)' },
+              min: 81.0,
+              max: 84.0
+            }
+          }
+        }
+      },
+      wmt: {
+        type: 'bar',
+        data: {
+          labels: ["Dense Transformer", "Top-2 MoE", "MEO (Task-level)", "MEO + TokenAtt"],
+          datasets: [
+            {
+              label: "WMT'14 En-De BLEU",
+              data: [27.4, 28.5, 28.6, 28.9],
+              backgroundColor: '#8b5cf6'
+            },
+            {
+              label: "WMT'16 En-Ro BLEU",
+              data: [34.1, 35.3, 35.4, 35.7],
+              backgroundColor: '#06b6d4'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              title: { display: true, text: 'BLEU Score' },
+              min: 25,
+              max: 38
+            }
+          }
+        }
+      },
+      scaling: {
+        type: 'line',
+        data: {
+          labels: ['k = 1', 'k = 2', 'k = 4', 'k = 8'],
+          datasets: [
+            {
+              label: 'Vanilla MoE FLOPs (G)',
+              data: [22.5, 41.2, 72.0, 138.4],
+              borderColor: '#f43f5e',
+              backgroundColor: 'rgba(244, 63, 94, 0.1)',
+              fill: true,
+              tension: 0.3
+            },
+            {
+              label: 'MEO FLOPs (G)',
+              data: [22.5, 24.8, 28.6, 34.2],
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.1)',
+              fill: true,
+              tension: 0.3
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              title: { display: true, text: 'FLOPs (G)' },
+              min: 15,
+              max: 150
+            }
+          }
+        }
+      }
+    };
+
+    function initChart() {
+      const ctx = document.getElementById('benchmarkChart').getContext('2d');
+      benchmarkChart = new Chart(ctx, {
+        type: chartDatasets.glue.type,
+        data: chartDatasets.glue.data,
+        options: chartDatasets.glue.options
+      });
+      updateChartColors();
+    }
+
+    function switchChartTab(tab) {
+      document.querySelectorAll('[id^="tab-chart-"]').forEach(btn => {
+        btn.classList.remove('bg-white', 'dark:bg-slate-700', 'text-brand-600', 'dark:text-white', 'shadow-sm');
+        btn.classList.add('text-slate-600', 'dark:text-slate-400');
+      });
+      const activeBtn = document.getElementById('tab-chart-' + tab);
+      activeBtn.classList.add('bg-white', 'dark:bg-slate-700', 'text-brand-600', 'dark:text-white', 'shadow-sm');
+      activeBtn.classList.remove('text-slate-600', 'dark:text-slate-400');
+
+      const descMap = {
+        glue: 'GLUE Benchmark: MEO reduces FLOPs by 60.3% while attaining highest average accuracy (83.3).',
+        wmt: "Machine Translation: MEO delivers +1.5 to +1.8 BLEU improvements over dense baselines with near-dense speed.",
+        scaling: 'FLOPs scaling with Top-k: Vanilla MoE computation explodes linearly with k, whereas MEO remains virtually flat.'
+      };
+      document.getElementById('chart-description').innerText = descMap[tab];
+
+      benchmarkChart.destroy();
+      const ctx = document.getElementById('benchmarkChart').getContext('2d');
+      benchmarkChart = new Chart(ctx, {
+        type: chartDatasets[tab].type,
+        data: chartDatasets[tab].data,
+        options: chartDatasets[tab].options
+      });
+      updateChartColors();
+    }
+
+    function updateChartColors() {
+      if (!benchmarkChart) return;
+      const isDark = htmlEl.classList.contains('dark');
+      const textColor = isDark ? '#94a3b8' : '#475569';
+      const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)';
+
+      if (benchmarkChart.options.scales.x) {
+        benchmarkChart.options.scales.x.ticks = { color: textColor };
+        benchmarkChart.options.scales.x.grid = { color: gridColor };
+        if (benchmarkChart.options.scales.x.title) {
+          benchmarkChart.options.scales.x.title.color = textColor;
+        }
+      }
+      if (benchmarkChart.options.scales.y) {
+        benchmarkChart.options.scales.y.ticks = { color: textColor };
+        benchmarkChart.options.scales.y.grid = { color: gridColor };
+        if (benchmarkChart.options.scales.y.title) {
+          benchmarkChart.options.scales.y.title.color = textColor;
+        }
+      }
+      benchmarkChart.update();
+    }
+
+    // --- Onload Initialization ---
+    window.addEventListener('DOMContentLoaded', () => {
+      initSimulator();
+      initChart();
+    });
+  </script>
+
+</body>
+</html>
