@@ -1,6 +1,6 @@
 # ⚡ SparseAdapter / MEO / PAD-Net: 每日前沿文献关联与参数高效稀疏/显存优化落地库 (2026-09 — 2026-10)
 
-**Document ID:** `PEFT-MEM-202609` | **Last Updated:** `2026-10-01` | **Target Path:** `docs/frontier_literature_connections_2026_09.md` | **Total Routed Papers:** `24`
+**Document ID:** `PEFT-MEM-202609` | **Last Updated:** `2026-10-02` | **Target Path:** `docs/frontier_literature_connections_2026_09.md` | **Total Routed Papers:** `31`
 
 > [!IMPORTANT]
 > **🔗 跨仓库文献引用链闭环 (Cross-Repository Reference Chain Closure)**
@@ -13,12 +13,17 @@
 
 | 收录日期 | 论文标题与 arXiv 链接 | 关键实测收益 / 核心结论 | 锚定本仓库代码模块与文档路径 (`Target Module`) | 原始精读归档 |
 | :---: | :--- | :--- | :--- | :---: |
-| `2026-10-02` | [**🗄️ LookaheadKV & RAP**](https://arxiv.org/abs/2603.10899) (`arXiv:2603.10899`) | **驱逐开销与首字延迟（TTFT）大幅降低**：在各大长文本理解基准（LongBench、L-Eval）上，`LookaheadKV` 相比依赖草稿生成的代表性基线，将 KV 驱逐耗时降低高达 **`14.5×`**，同时在复杂长... | `MEO` (Data-Free Analytical Normal/Laplace Quantiles + Hadamard KV Memory Compression) | [2026-10-02](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-10-02_ai_paper_notes.md) |
+| `2026-10-02` | [**✂️ DySL-VLA & DySta**](https://arxiv.org/abs/2602.22896) (`arXiv:2602.22896`) | **CALVIN 具身操纵基准**：`DySL-VLA` 在 CALVIN 长程基准测试中，平均成功任务链长度（Success Length）相较 Deer-VLA 提升 **`+2.1%`**，在保持相同任务成功率的前提下，可训... | `PAD-Net` (Action-Sensitivity Dynamic-Static Progressive Layer Skipping) | [2026-10-02](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-10-02_ai_paper_notes.md) |
+| `2026-10-02` | [**🧩 SlimQwen & MAESTRO**](https://arxiv.org/abs/2605.08738) (`arXiv:2605.08738`) | **预训练规模下后剪枝显著优于从头训练**：`SlimQwen` 证实，在完全相同的千亿级 Token 预训练算力预算下，对预训练完成的 `Qwen3-Next-80A3B` 实施渐进专家剪枝所得的 `23A2B` 模型，在 MM... | `SparseAdapter` & `MEO` (Large-Sparse MoE Pruning beats Small-Dense From-Scratch Pretraining) | [2026-10-02](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-10-02_ai_paper_notes.md) |
+| `2026-10-02` | [**🗄️ LookaheadKV & RAP**](https://arxiv.org/abs/2603.10899) (`arXiv:2603.10899`) | **驱逐开销与首字延迟（TTFT）大幅降低**：在各大长文本理解基准（LongBench、L-Eval）上，`LookaheadKV` 相比依赖草稿生成的代表性基线，将 KV 驱逐耗时降低高达 **`14.5×`**，同时在复杂长... | `SparseAdapter` & `MEO` (Draft-Free Parameter-Efficient Prediction Head for Future Attention KV Eviction, 14.5x Lower Overhead) | [2026-10-02](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-10-02_ai_paper_notes.md) |
+| `2026-10-02` | [**🦾 World Action Agent (WAA) & Recursive Harness Distillation**](https://arxiv.org/abs/2609.29964) (`arXiv:2609.29964`) | **LIBERO-Pro 创纪录表现**：`World Action Agent (WAA)` 仅使用 LIBERO-90 演化出的操作技能，在挑战极高的 LIBERO-Pro 基准测试上取得了... | `MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression) | [2026-10-02](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-10-02_ai_paper_notes.md) |
+| `2026-10-02` | [**🌊 Transition Flow Matching & Recursive Flow Matching**](https://arxiv.org/abs/2603.15689) (`arXiv:2603.15689`) | **科学仿真 20x 速度飞跃**：在复杂的跨尺度时空流体仿真（Navier-Stokes 与气候动力学预测）基准测试中，`RecFM` 在 1–4 步生成下，相比目前领先的扩散基线实现了高达... | `MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression) | [2026-10-02](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-10-02_ai_paper_notes.md) |
+| `2026-10-02` | [**🧬 COEVO & SIFT**](https://arxiv.org/abs/2609.33398) (`arXiv:2609.33398`) | **抗提示词扰动与推理上限突破**：`COEVO` 在复杂推理基准测试中，相较固定上下文的传统强化学习基准，在更短训练步数内取得显著更高的任务胜率，且当测试期人为给系统提示词注入噪声或风格改变时，其鲁棒性比对照组高出... | `MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression) | [2026-10-02](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-10-02_ai_paper_notes.md) |
 | `2026-10-01` | [**IAprune & Rényi Entropy (`Col-Ln`)**](https://arxiv.org/abs/2603.22991) (`arXiv:2603.22991`) | **`IAprune` 在仿真与真机闭环控制中的实测加速**：跨越 4 种具身操作策略、3 个仿真基准与真实机器人平台... | `SparseAdapter` (First-Order Taylor Information Attribution for High-Sparsity SwiGLU Adapter/FFN Channel Selection) | [2026-10-01](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-10-01_ai_paper_notes.md) |
 | `2026-10-01` | [**AIMER & EvoESAP**](https://arxiv.org/abs/2603.18492) (`arXiv:2603.18492`) | **`AIMER` 超越基于 C4 校准集的强基线且速度快几个数量级**：在涵盖 `7B` 至 `47B` 不同架构的 MoE 语言模型及 **16 个多样化基准**上，免校准的 `AIMER` 不仅全面超越现有免校准方法，更在跨... | `PAD-Net` (Layer-Adaptive Non-Uniform Sparsity Allocation across Transformer Depth) | [2026-10-01](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-10-01_ai_paper_notes.md) |
 | `2026-10-01` | [**MixedDimKV & DapQ**](https://arxiv.org/abs/2603.20616) (`arXiv:2603.20616`) | **`MixedDimKV` / `MixedDimKV-H` 刷新极限压缩比记录**：在 LongBench 长文本基准上... | `MEO` (4-Group Mixed-Dimension KV Cache Compression under Equal Memory Budget) | [2026-10-01](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-10-01_ai_paper_notes.md) |
 | `2026-09-30` | [**SlimWise & CascadeEP**](https://arxiv.org/abs/2609.34117) (`arXiv:2609.34117`) | **`SlimWise` 解码吞吐与精度双赢**：在 `DeepSeek-V2-Lite`、`Qwen3-30B-A3B` 与 `Mixtral-8x7B` 上，当 Decode 阶段裁剪 **37.5%–50%** 专家权重或激... | `SparseAdapter` & `MEO` (Decoupled Prefill Expert Width Pruning vs Decode Memory Bandwidth Reduction) | [2026-09-30](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-30_ai_paper_notes.md) |
-| `2026-09-30` | [**Dynamic Flow, Static Graph & DORA**](https://arxiv.org/abs/2609.34727) (`arXiv:2609.34727`) | **端侧静态图 NPU 首字延迟骤降**：在高通骁龙 8 Elite（Hexagon NPU）与端侧 SoC 上运行 `Qwen2.5-3B/7B` 与 `Llama-3.2-3B`... | `MEO` (Static-Graph Padded KV Arena Reuse on Edge NPUs) | [2026-09-30](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-30_ai_paper_notes.md) |
+| `2026-09-30` | [**Dynamic Flow, Static Graph & DORA**](https://arxiv.org/abs/2609.34727) (`arXiv:2609.34727`) | **端侧静态图 NPU 首字延迟骤降**：在高通骁龙 8 Elite（Hexagon NPU）与端侧 SoC 上运行 `Qwen2.5-3B/7B` 与 `Llama-3.2-3B`... | `MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression) | [2026-09-30](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-30_ai_paper_notes.md) |
 | `2026-09-30` | [**VLaRL & Programmable World Model**](https://arxiv.org/abs/2609.30868) (`arXiv:2609.30868`) | **`VLaRL` 真机零样本迁移大幅攻克精密操作**：在包含 USB 插入、齿轮啮合、紧密卡扣装配等高难度接触任务上，冻结的基座 VLA 成功率仅为 **28.0%**，直接基于像素的 Sim-to-Real RL 因外观差异仅... | `SparseAdapter` (Lightweight FiLM Residual Policy Head on Frozen VLA Backbone) | [2026-09-30](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-30_ai_paper_notes.md) |
 | `2026-09-29` | [**🧩 CoMoE-Spec**](https://arxiv.org/abs/2609.22471) (`arXiv:2609.22471`) | 在 Mixtral-8x7B、Qwen2.5-MoE-A14B 与 OLMoE-1B-7B 上结合 EAGLE-2 投机解码评测表明：`CoMoE-Spec` 将验证阶段的唯一激活专家总数削减了 **42%–58%**，在保持草稿... | `MEO` (Coactivation-Bounded Expert Weight Memory Traffic in Speculative Verification) | [2026-09-29](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-29_ai_paper_notes.md) |
 | `2026-09-29` | [**⚡ VestigeKV**](https://arxiv.org/abs/2609.03949) (`arXiv:2609.03949`) | 在基于 MLA 架构的长上下文大模型上（128K–256K 上下文长度），`VestigeKV` 无需任何重新训练或旁路预测器，在仅加载 **15%–20% KV 潜向量**的稀疏注意力预算下，在 RULER、LongBench... | `MEO` (Zero-Auxiliary-Memory Vestigial Branch Sparse KV Indexing) | [2026-09-29](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-29_ai_paper_notes.md) |
@@ -31,12 +36,14 @@
 | `2026-09-26` | [**⚖️ SelKV**](https://arxiv.org/abs/2607.16213) (`arXiv:2607.16213`) | 在 LongBench、RULER 及多轮数学推理基准上，免训练实现 **5x–10x KV Cache 压缩**，通过引入对数分母补偿项，消除了高压缩比下 80% 以上的精度退化。 | `SparseAdapter` / `MEO` / `PAD-Net` | [2026-09-26](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-26_ai_paper_notes.md) |
 | `2026-09-25` | [**SAC**](https://arxiv.org/abs/2604.18392) (`arXiv:2604.18392`) | 在 TB 级长上下文并发推理中，SAC 将跨节点 KV 读取有效带宽利用率从 `15%` 提升至 **`94%`**，P99 尾延迟降低 **3.7x**。 | `MEO` (CXL Near-Memory Sparse Cacheline Gathering for Disaggregated Memory) | [2026-09-25](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-25_ai_paper_notes.md) |
 | `2026-09-23` | [**MELT**](https://arxiv.org/abs/2605.07721) (`arXiv:2605.07721`) | 在 $K=4$ 与 $K=8$ 循环配置下，MELT 将长文本解码时的 **KV 缓存显存与带宽读取量直接削减 $75\text{ pct}–87.5$ %（严格降至 $1/K$ ）**，同时在语言建模与数学推理上与保存全套每步... | `MEO` (Decoupling Recurrent Compute Scaling from Activation/KV Memory Footprint) | [2026-09-23](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-23_ai_paper_notes.md) |
+| `2026-09-22` | [**LoRP**](https://arxiv.org/abs/2605.27786) (`arXiv:2605.27786`) | 在 **Llama-2/3** 与 **Mistral-7B** 的 25% 免训练层剪枝上，LoRP 在 MMLU 与 BBH 复杂推理基准上比全局余弦打分（ShortGPT）提升 **`+4.3%`**。 | `MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression) | [2026-09-22](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-22_ai_paper_notes.md) |
 | `2026-09-22` | [**SPIN**](https://arxiv.org/abs/2604.26837) (`arXiv:2604.26837`) | 在单台 8 卡服务器上支持 **1M–2M 上下文长度** 并发推理，相比纯 CPU Offloading（Infinite-LLM）实现 **4.8x** 吞吐提升，且恢复 99.7% 全量注意力精度。 | `SparseAdapter` / `MEO` / `PAD-Net` | [2026-09-22](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-22_ai_paper_notes.md) |
 | `2026-09-20` | [**SHIFT-LLM**](https://arxiv.org/abs/2608.25068) (`arXiv:2608.25068`) | 在 **Llama-3-8B/70B** 与 **Qwen-2.5-14B** 上剪除 **25%–35% 的层**后，无需任何梯度下降微调（仅需 30 秒闭式矩阵求逆），SHIFT-LLM 将 WikiText2 困惑度（PPL... | `SparseAdapter` (Closed-Form Low-Rank Adapter Recovery after Structural Pruning) | [2026-09-20](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-20_ai_paper_notes.md) |
 | `2026-09-20` | [**CARE**](https://arxiv.org/abs/2607.26052) (`arXiv:2607.26052`) | 在多任务 MoE-LoRA 与稀疏 MoE 语言模型上，CARE 在削减 **32%–45% 平均专家激活 FLOPs** 的同时，在常识推理、代码与数学基准上全面持平甚至超越固定 Top- $k$ 基线（`+0.9%` 平均准确... | `SparseAdapter` / `MEO` / `PAD-Net` | [2026-09-20](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-20_ai_paper_notes.md) |
 | `2026-09-20` | [**Minima-KV**](https://arxiv.org/abs/2608.23834) (`arXiv:2608.23834`) | 在 **Llama-3.1-70B** 与 **Qwen-2.5-32B** 的 128K 长思维链并发服务中，Minima-KV 实现 **4.6x** 真实物理显存节省（零内部页碎片），将最大并发 Batch Size 提升... | `MEO` (Equal-Byte Page Pool & Register-Level Mixed-Precision KV Memory) | [2026-09-20](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-20_ai_paper_notes.md) |
 | `2026-09-18` | [**🧩 MoE-Tile**](https://arxiv.org/abs/2609.09112) (`arXiv:2609.09112`) | **硬件测试平台**：NVIDIA H100 80GB SXM5 与 B200 GPU 集群； | `SparseAdapter` / `MEO` / `PAD-Net` | [2026-09-18](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-18_ai_paper_notes.md) |
 | `2026-09-18` | [**🗜️ Decoupled-KV**](https://arxiv.org/abs/2609.07765) (`arXiv:2609.07765`) | 在 AgentBench、SWE-bench 与 LongBench 上，实现 **81.5% 的 KV Cache 显存削减（压缩比达 5.4×）**，长程任务规划成功率保持在全量缓存基准的 **99.4%**。 | `SparseAdapter` / `MEO` / `PAD-Net` | [2026-09-18](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-18_ai_paper_notes.md) |
+| `2026-09-18` | [**🧬 Autoformalizer-Agent**](https://arxiv.org/abs/2609.09881) (`arXiv:2609.09881`) | 详见下方完整公式与实验卡片 | `MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression) | [2026-09-18](https://github.com/Shwai-He/scholar-odyssey/blob/main/intelligence/papers/2026-09-18_ai_paper_notes.md) |
 
 ---
 
@@ -117,7 +124,274 @@
 
 ## 📐 3. 逐篇论文深度机制解构、数学公式与本仓库落地指南 (Per-Paper Deep-Dive Cards)
 
-### 3.1 [2026-10-02] 🗄️ LookaheadKV & RAP: 免草稿前瞻参数高效预测与 RoPE 旋转对齐通道对 KV 缓存压缩
+### 3.1 [2026-10-02] ✂️ DySL-VLA & DySta: 机器人具身操作中的动作自适应动态跳层与时空解耦视觉 Token 缓存复用
+
+> **关联论文**：
+> * `DySL-VLA: Efficient Vision-Language-Action Model Inference via Dynamic-Static Layer-Skipping for Robot Manipulation` ([`arXiv:2602.22896`](https://arxiv.org/abs/2602.22896)，北京大学 SEC Lab)
+> * `Efficient Long-Horizon Vision-Language-Action Models via Static-Dynamic Disentanglement` ([`arXiv:2602.03983`](https://arxiv.org/abs/2602.03983))
+
+#### 📌 核心痛点与研究动机
+现有的通用具身 Vision-Language-Action（VLA）模型（如 OpenVLA、RoboFlamingo、Octo）均采用静态网络架构：每一个连续控制时间步（Time Step）无论当前执行的是粗粒度的自由空间臂展移动，还是亚毫米级的精密抓取接触，都必须完整执行 30–40 层的深层 Transformer 主干网络。这造成了两大严重缺陷：
+1. **计算资源分配与动作物理敏感度错配**：长程操作任务中，大部分步数属于容错率高的轨迹插值步，盲目执行深层网络带来极高的推理开销与控制延迟；
+2. **多帧视觉输入的上下文冗余**：连续相机画幅中，背景桌面等静态环境占据 70% 以上视觉像素，逐帧重新提取特征并常驻 KV 缓存导致显存带宽过早耗尽。
+
+#### ⚙️ 核心机制与数学公式推导
+**`DySL-VLA`** 提出动作感知的两级分层架构，将网络层划分为信息层（Informative Layers $\mathcal{L} _ {\text{info}}$ ）与增量层（Incremental Layers $\mathcal{L} _ {\text{incr}}$ ）。定义当前动作步的状态表征为 $s _ t$ ，动作敏感度得分由先验跳层门控 $\mathcal{G} _ {\text{prior}}$ 预测：
+
+$$
+\pi _ {\text{skip}}(s _ t) = \sigma\left(\mathbf{W} _ {\text{gate}} \cdot \text{Pooling}(H _ t^{(\text{info})}) + b\right)
+$$
+
+若 $\pi _ {\text{skip}}(s _ t) > \tau _ {\text{thresh}}$ ，则跳过全部增量层 $\mathcal{L} _ {\text{incr}}$ ，直接将信息层隐状态送入动作预测头：
+
+$$
+a _ t = \begin{cases} \text{Head}\left(H _ t^{(\text{info})}\right), & \text{if } \pi _ {\text{skip}}(s _ t) > \tau _ {\text{thresh}} \cr \text{Head}\left(\mathcal{F} _ {\text{incr}}(H _ t^{(\text{info})})\right), & \text{otherwise} \end{cases}
+$$
+
+为了消除跳层带来的特征分布偏移，设计跳层感知的两阶段知识蒸馏损失：
+
+$$
+\mathcal{L} _ {\text{KD}} = \alpha \mathcal{L} _ {\text{MSE}}(a _ t, a _ t^\star) + (1-\alpha) \mathcal{D} _ {\text{KL}}\left(\mathcal{P} _ {\text{student}}(a _ t) \Vert \mathcal{P} _ {\text{teacher}}(a _ t^\star)\right)
+$$
+
+**`DySta`** 则将多模态视觉 Token 显式解耦为静态语义基底 $T _ {\text{static}}$ 与动态交互差分 $T _ {\text{dyn}}$ ：
+
+$$
+T _ v(t) = T _ {\text{static}} \oplus \Delta T _ {\text{dyn}}(t)
+$$
+
+在长程交互中仅保留单份静态 KV 缓存：
+
+$$
+K _ v(t) = K _ {\text{static}} \cup K _ {\Delta}(t), \quad V _ v(t) = V _ {\text{static}} \cup V _ {\Delta}(t)
+$$
+
+仅当环境发生大幅剧烈变动时（通过重缓存门控 $\mathcal{R} _ {\text{gate}} > \epsilon$ 触发）才全量刷新 $K _ {\text{static}}$ 。
+
+#### 🎨 架构图与核心伪代码
+
+```mermaid
+flowchart TD
+    subgraph Input ["视觉与语言输入序列"]
+        V["多视角相机画幅 V_t"]
+        L["任务语言指令 L"]
+    end
+
+    subgraph DySta ["DySta: 静态/动态视觉解耦"]
+        Decouple["空间差分与运动解耦算子"]
+        V_Static["全局静态环境 Token (跨帧共享)"]
+        V_Dyn["局部动态接触 Token (每帧更新)"]
+    end
+
+    subgraph DySL ["DySL-VLA: 动态层选择器"]
+        Info_L["基础信息层 L_info (强制执行 1..M)"]
+        Gate{"先验跳层门控 G_prior"}
+        Incr_L["高精度增量层 L_incr (选跳 M+1..N)"]
+        Action_Head["连续动作解码头 Action Head"]
+    end
+
+    V --> Decouple
+    Decouple --> V_Static
+    Decouple --> V_Dyn
+    V_Static --> Info_L
+    V_Dyn --> Info_L
+    L --> Info_L
+
+    Info_L --> Gate
+    Gate -- "低风险平移 (Skip)" --> Action_Head
+    Gate -- "高灵敏接触 (Execute)" --> Incr_L
+    Incr_L --> Action_Head
+
+    style DySta fill:#eff6ff,stroke:#3b82f6,stroke-width:1.5px
+    style DySL fill:#ecfdf5,stroke:#10b981,stroke-width:1.5px
+```
+
+```python
+import torch
+import torch.nn as nn
+
+class DySLVLAPruner(nn.Module):
+    def __init__(self, info_layers, incr_layers, action_head, threshold=0.65):
+        super().__init__()
+        self.info_layers = info_layers
+        self.incr_layers = incr_layers
+        self.action_head = action_head
+        self.gate = nn.Linear(info_layers[-1].hidden_dim, 1)
+        self.threshold = threshold
+
+    def forward(self, x, static_kv_cache=None):
+        # 1. 强制执行基础信息层提取全局物理与时空语义
+        h = x
+        for layer in self.info_layers:
+            h = layer(h, kv_cache=static_kv_cache)
+        
+        # 2. 预测动作敏感度并计算跳层概率
+        skip_logit = self.gate(h.mean(dim=1))
+        skip_prob = torch.sigmoid(skip_logit)
+
+        # 3. 动态分支路由
+        if skip_prob.item() > self.threshold:
+            # 粗粒度动作：直接跳过增量层
+            action = self.action_head(h)
+        else:
+            # 精细接触动作：完整执行增量层细化轨迹
+            for layer in self.incr_layers:
+                h = layer(h)
+            action = self.action_head(h)
+            
+        return action, skip_prob
+```
+
+#### 📊 实验指标与结论
+* **CALVIN 具身操纵基准**：`DySL-VLA` 在 CALVIN 长程基准测试中，平均成功任务链长度（Success Length）相较 Deer-VLA 提升 **`+2.1%`**，在保持相同任务成功率的前提下，可训练参数量骤减 **`85.7×`**，端到端控制速度实现 **`3.75×` 加速**；
+* **仿真与真机实测**：`DySta` 在仿真基准上实现 **`2.0×` 推理加速**且成功率提升 **`+2.3%`**；在真实机器人机械臂长程操作任务中，多帧特征整合能力提升 **`24.5%`**，真实物理场景任务绝对成功率跃升 **`+23.3%`**，推理延迟降低至原生基线的 **`45%`**。
+
+#### 💡 与我们研究的闭环关联
+* 🎯 **锚定关联工作**：直接对接我们的 **`axon_v2`**（`Pillar 1: RL-HiSTrim` 视觉剪枝与 `Pillar 3: VLADrop` 动态层剪枝）与 **`VLADrop`**（`CASE-Lab-UMD/VLADrop` 2D DTR+WTR 宽深协同压缩框架）；
+* 🔬 **机理对比与技术异同**：我们此前的 `VLADrop` 侧重于离线结构化通道切除与静态权重折叠，而 `DySL-VLA` 将层丢弃（Layer Dropping）提升为**在线动作触发式动态早退**，弥补了我们在连续时间步上缺乏“物理接触感知计算自适应分配”的盲区；
+* 💡 **下一阶段研究启发**：在 `axon_v2/models/vla_pruner.py` 中引入 `DySL-VLA` 的两阶段门控，将 HiSTrim 的视觉 Token 剪枝率与增量层跳层门控联动——在平移阶段同时执行高比例视觉 Token 剪枝与全量增量层跳过，实现高达 5x 的端到端推理提速。
+
+#### 💡 工程启发与落地建议
+在嵌入式机器人控制器（如 Jetson AGX Orin）部署时，增量层的动态跳过可转化为异步算子调度，避免 GPU 显存内空载等待；静态 Token 缓存建议分配在持久化 pinned memory 中，仅当相机发生剧烈位姿转动（通过 IMU 读数阈值触发）时再更新。
+
+---
+
+> [!TIP]
+> **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`PAD-Net` (Action-Sensitivity Dynamic-Static Progressive Layer Skipping)  
+> **📚 上游精读归档 (`Upstream Source`)**：`scholar-odyssey/intelligence/papers/2026-10-02_ai_paper_notes.md`
+
+
+---
+
+### 3.2 [2026-10-02] 🧩 SlimQwen & MAESTRO: 预训练规模 MoE 渐进专家剪枝与各态历经马尔可夫全局路由稀疏化
+
+> **关联论文**：
+> * `SlimQwen: Exploring the Pruning and Distillation in Large MoE Model Pre-training` ([`arXiv:2605.08738`](https://arxiv.org/abs/2605.08738))
+> * `It Takes a MAESTRO To Prune Bad Experts` ([`arXiv:2607.08601`](https://arxiv.org/abs/2607.08601))
+
+#### 📌 核心痛点与研究动机
+万亿参数级稀疏 MoE（如 Qwen-MoE、DeepSeekMoE、Mixtral）通过门控动态激活少数专家实现了训练与前向 FLOPs 的解耦，但庞大的全部专家参数池在部署时必须全量常驻显存，构成了极端的“内存墙（Memory Wall）”。现有的 MoE 专家剪枝方案存在两大局限：
+1. **单样本局部贪心评估的不可靠性**：传统方案仅依据单个 Token 的路由器输出概率或激活频率打分，完全忽视了专家在深层自回归序列中的**跨层相干协同与转移依赖**；
+2. **后剪枝与从头预训练的范式之争**：在千亿级 Token 预训练规模下，究竟是“先剪枝再继续预训练”更优，还是直接从头训练小尺寸 MoE 更强，此前缺乏严格的量化对比。
+
+#### ⚙️ 核心机制与数学公式推导
+**`MAESTRO`** 颠覆了孤立评估单个专家的视角，将自回归生成过程中专家激活的转移轨迹建模为**各态历经马尔可夫链（Ergodic Markov Chain）**。设模型有 $E$ 个专家，在层 $\ell$ 专家 $i$ 激活后紧接着在层 $\ell+1$ 激活专家 $j$ 的转移概率矩阵为 $P^{(\ell)} \in \mathbb{R}^{E \times E}$ ：
+
+$$
+P _ {ij}^{(\ell)} = \frac{\sum _ {t=1}^T \mathbb{I}(e _ t^{(\ell)} = i \land e _ t^{(\ell+1)} = j)}{\sum _ {t=1}^T \mathbb{I}(e _ t^{(\ell)} = i)}
+$$
+
+由于其状态空间不可约且非周期，存在唯一的全局平稳分布向量 $\pi^{(\ell)}$ 满足：
+
+$$
+\pi^{(\ell)} P^{(\ell)} = \pi^{(\ell)}, \quad \sum _ {i=1}^E \pi _ i^{(\ell)} = 1
+$$
+
+$\pi _ i^{(\ell)}$ 反映了专家 $i$ 在全局信息流中的长期稳态驻留权重。据此定义专家全局综合重要性得分：
+
+$$
+\mathcal{S} _ {\text{global}}(e _ i^{(\ell)}) = \pi _ i^{(\ell)} \cdot \left\lVert \mathbf{W} _ {\text{down}, i}^{(\ell)} \mathbf{W} _ {\text{up}, i}^{(\ell)} \right\rVert _ F
+$$
+
+**`SlimQwen`** 提出“部分保留专家合并（Partial-Preservation Expert Merging）”原则，将待剪除的冗余专家按余弦亲和度投影合并至高分幸存专家，并引入多 Token 预测（MTP）辅助自蒸馏损失：
+
+$$
+\mathcal{L} _ {\text{total}} = \mathcal{L} _ {\text{LM}}(x) + \lambda _ {\text{KD}} \mathcal{D} _ {\text{KL}}\left(\mathcal{P} _ {\text{stu}}(x) \Vert \mathcal{P} _ {\text{tea}}(x)\right) + \sum _ {k=1}^K \beta _ k \mathcal{L} _ {\text{MTP}}(x _ {t+k})
+$$
+
+其渐进式剪枝退火策略消除了突变剪枝引发的梯度爆炸。
+
+#### 🎨 架构图与核心伪代码
+
+```mermaid
+flowchart TD
+    subgraph Transition ["自回归专家激活轨迹采集"]
+        Tokens["输入 Token 序列"] --> Router1["第 l 层路由器"]
+        Router1 --> Act1["激活专家 e_i"]
+        Act1 --> Router2["第 l+1 层路由器"]
+        Router2 --> Act2["激活专家 e_j"]
+    end
+
+    subgraph Markov ["MAESTRO: 马尔可夫转移矩阵构建"]
+        Transition_Count["统计转移频次 P_ij"]
+        Eigen_Solve["各态历经平稳分布解算: π P = π"]
+        Stationary_Weight["全局稳态权重向量 π"]
+    end
+
+    subgraph Prune_Merge ["SlimQwen: 部分保留合并与 MTP 蒸馏"]
+        Score["结合权重范数确定保留专家"]
+        Merge["余弦相似度投影合并被剪除专家"]
+        MTP["MTP 辅助蒸馏继续预训练"]
+    end
+
+    Act2 --> Transition_Count
+    Transition_Count --> Eigen_Solve
+    Eigen_Solve --> Stationary_Weight
+    Stationary_Weight --> Score
+    Score --> Merge
+    Merge --> MTP
+
+    style Markov fill:#eff6ff,stroke:#3b82f6,stroke-width:1.5px
+    style Prune_Merge fill:#fef3c7,stroke:#f59e0b,stroke-width:1.5px
+```
+
+```python
+import torch
+
+def compute_maestro_stationary_scores(expert_activations_seq, num_experts):
+    """
+    expert_activations_seq: [num_tokens, num_layers], 记录每个 token 在每层的激活专家 ID
+    """
+    num_layers = expert_activations_seq.shape[1]
+    global_expert_scores = []
+
+    for l in range(num_layers - 1):
+        # 1. 统计相邻层间的专家激活转移频次矩阵
+        src = expert_activations_seq[:, l]
+        dst = expert_activations_seq[:, l + 1]
+        
+        counts = torch.zeros((num_experts, num_experts), dtype=torch.float32)
+        for s, d in zip(src, dst):
+            counts[s, d] += 1.0
+            
+        # 2. 构造行归一化随机转移矩阵 (加拉普拉斯平滑防吸收态)
+        transition_matrix = (counts + 1e-4) / (counts.sum(dim=-1, keepdim=True) + 1e-4 * num_experts)
+        
+        # 3. 求解左特征向量主本征方程 (特征值为 1 的平稳分布)
+        eigenvalues, eigenvectors = torch.linalg.eig(transition_matrix.T)
+        real_eigenvalues = eigenvalues.real
+        # 寻找最接近 1.0 的本征向量
+        idx = torch.argmin(torch.abs(real_eigenvalues - 1.0))
+        stationary_dist = eigenvectors[:, idx].real
+        stationary_dist = torch.abs(stationary_dist) / torch.sum(torch.abs(stationary_dist))
+        
+        global_expert_scores.append(stationary_dist)
+
+    return global_expert_scores
+```
+
+#### 📊 实验指标与结论
+* **预训练规模下后剪枝显著优于从头训练**：`SlimQwen` 证实，在完全相同的千亿级 Token 预训练算力预算下，对预训练完成的 `Qwen3-Next-80A3B` 实施渐进专家剪枝所得的 `23A2B` 模型，在 MMLU、GSM8K 与 HumanEval 上的表现全面超越从头训练的等规模架构，知识留存率高达 **`96.8%`**；
+* **极端压缩鲁棒性**：`MAESTRO` 在安全、偏见与复杂推理 5 大领域评测中，面对 `50%` 的专家切除率，模型性能留存率相较传统频次打分基线提升高达 **`+10.61%`**，且跨任务方差降低 40%，证明了各态历经马尔可夫平稳分布能够强力捕获跨层知识协同链路。
+
+#### 💡 与我们研究的闭环关联
+* 🎯 **锚定关联工作**：直接对应我们的 **`ModelLesion`**（`width_woodbury_pruner.py`）与 **`Capacity-Aware-MoE`**（`router_tuning` 专家剪枝框架）；
+* 🔬 **机理对比与技术异同**：我们此前的 `Capacity-Aware-MoE` 侧重于依据单个 Token 的 Capacity 限制硬截断候选专家，属于前向阶段的局部剪枝；`MAESTRO` 提供的马尔可夫稳态分布为我们的离线结构剪枝提供了首个具有严谨概率论保证的**跨层全局重要性先验**；
+* 💡 **下一阶段研究启发**：将 `MAESTRO` 的平稳转移分布 $\pi^{(\ell)}$ 与 `ModelLesion` 的 Woodbury 逆 Hessian 矩阵求交——使用马尔可夫稳态概率确定保留专家拓扑，使用 Woodbury 残差代数补偿被剪除专家的投影漂移。
+
+#### 💡 工程启发与落地建议
+专家激活转移矩阵的统计开销极低，可以在 Prefill 阶段利用现有的监控打点顺带统计（仅占用 $O(L \cdot E^2)$ 空间），无需保存中间巨幅激活张量；结合 MTP 蒸馏微调时，仅需更新合并后专家的 Down-projection 权重，即可在 24 小时内完成十亿级参数模型的部署级瘦身。
+
+---
+
+> [!TIP]
+> **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`SparseAdapter` & `MEO` (Large-Sparse MoE Pruning beats Small-Dense From-Scratch Pretraining)  
+> **📚 上游精读归档 (`Upstream Source`)**：`scholar-odyssey/intelligence/papers/2026-10-02_ai_paper_notes.md`
+
+
+---
+
+### 3.3 [2026-10-02] 🗄️ LookaheadKV & RAP: 免草稿前瞻参数高效预测与 RoPE 旋转对齐通道对 KV 缓存压缩
 
 > **关联论文**：
 > * `LookaheadKV: Fast and Accurate KV Cache Eviction by Glimpsing into the Future without Generation` ([`arXiv:2603.10899`](https://arxiv.org/abs/2603.10899)，Samsung Labs)
@@ -242,13 +516,351 @@ class RoPEAlignedKVPairPruner(nn.Module):
 ## 🔥 板块二：全球流行前沿热点精选 (Trending Frontier)
 
 > [!TIP]
-> **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`MEO` (Data-Free Analytical Normal/Laplace Quantiles + Hadamard KV Memory Compression)  
+> **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`SparseAdapter` & `MEO` (Draft-Free Parameter-Efficient Prediction Head for Future Attention KV Eviction, 14.5x Lower Overhead)  
 > **📚 上游精读归档 (`Upstream Source`)**：`scholar-odyssey/intelligence/papers/2026-10-02_ai_paper_notes.md`
 
 
 ---
 
-### 3.2 [2026-10-01] IAprune & Rényi Entropy (`Col-Ln`): Interaction-Aligned Visual Token Pruning for Embodied Manipulation & Early-Layer Rényi Entropy Pruning (`arXiv:2603.22991` & `arXiv:2603.27900`)
+### 3.4 [2026-10-02] 🦾 World Action Agent (WAA) & Recursive Harness Distillation: 具身决策工作区动作演练与多智能体跨代干预战术手册蒸馏
+
+> **关联论文**：
+> * `World Action Agent: Harnessing VLMs for Robot Manipulation via World Action Rehearsal` ([`arXiv:2609.29964`](https://arxiv.org/abs/2609.29964))
+> * `Recursive Harness Distillation across Agents for Robot Manipulation` ([`arXiv:2609.33378`](https://arxiv.org/abs/2609.33378))
+
+#### 📌 核心痛点与研究动机
+现阶段将前沿视觉语言模型（VLM）应用于机器人机械臂控制，普遍存在“脱节执行”与“经验无法泛化”瓶颈：
+1. **被动开环决策缺乏物理演练（Rehearsal）**：传统 VLA 将 VLM 视作黑盒策略网络，接收相机图像后直接一次性输出机械臂 7-DoF 动作轨迹，一旦出现细微空间遮挡或深度估计漂移，无法在执行前在脑海中对动作后果进行“预演并修偏（Mental Rehearsal）”；
+2. **重型大模型与端侧轻量小模型经验割裂**：超大参数量的前沿多模态 Agent 虽然具有强大的故障诊断与纠偏能力，但无法塞入实时端侧机器人；而端侧轻量模型往往泛化能力薄弱，难以直接继承大模型的试错经验。
+
+#### ⚙️ 核心机制与数学公式推导
+**`World Action Agent (WAA)`** 构建了交互式“三维视觉动作工作区（Visual Action Workspace）”，包含三大核心算子：
+1. **接触几何视角选择（Contact Views）**：根据物体几何点云自动对齐最近交互法向量：
+
+$$
+\mathbf{v} _ {\text{contact}}^\star = \arg\max _ {\mathbf{v} \in \mathcal{V}} \left\langle \mathbf{n} _ {\text{surface}}, \mathbf{v} _ {\text{cam}} \right\rangle
+$$
+
+2. **动作演练与反思修改（Action Rehearsal）**：由内生想象智能体（Imagination Agent）在视觉流形中合成假想动作轨迹，并结合物理碰撞边界检验打分：
+
+$$
+a _ {\text{final}} = a _ {\text{prop}} + \mathcal{F} _ {\text{rehearsal}}\left(a _ {\text{prop}}, \mathcal{E} _ {\text{feedback}}\right)
+$$
+
+3. **视线内闭环残差修正（In-View Correction）**：直接在观测画面投影坐标系中对残余像素偏移进行闭环消除。
+
+**`Recursive Harness Distillation`** 则开创了“智能体脚手架战术手册蒸馏（Playbook Distillation）”范式。强智能体（Strong Agent $\mathcal{A} _ {\text{strong}}$ ）在环境探索中将所有成功纠偏的干预轨迹抽象为结构化策略元规则集合 $\mathcal{P} _ {\text{rules}}$ ：
+
+$$
+\mathcal{P}^{(k)} = \text{Distill}\left(\tau _ {\text{intervene}}(\mathcal{A} _ {\text{strong}})\right)
+$$
+
+随后将战术手册装载至轻量端侧智能体（Light Agent $\mathcal{A} _ {\text{light}}$ ），轻量智能体无需重新微调主干参数，仅通过挂载战术手册并在执行失败时触发递归重写循环：
+
+$$
+\mathcal{P}^{(k+1)} = \mathcal{P}^{(k)} \cup \Delta\mathcal{P}\left(\text{Feedback}(\mathcal{A} _ {\text{light}})\right)
+$$
+
+#### 🎨 架构图与核心伪代码
+
+```mermaid
+flowchart TD
+    subgraph WAA ["World Action Agent (WAA) 视觉演练架构"]
+        Obs["多视角场景点云与图像"] --> Contact["接触几何视角自适应对齐"]
+        Contact --> Prop["动作草案提案 a_prop"]
+        Prop --> Imagine["想象智能体演练仿真与碰撞反馈"]
+        Imagine --> Correct["视线内残差修正 In-View Correction"]
+        Correct --> Real_Act["输出确定性安全轨迹 a_final"]
+    end
+
+    subgraph Distill ["Recursive Harness Distillation 战术手册循环"]
+        Strong["强力大模型智能体 A_strong"] --> Extract["干预轨迹萃取"]
+        Extract --> Playbook["结构化行动战术手册 Playbook P"]
+        Playbook --> Light["端侧轻量智能体 A_light 零参挂载"]
+        Light --> Exec_Fail{"执行异常探测"}
+        Exec_Fail -- "反馈失败案例" --> Strong
+        Exec_Fail -- "成功" --> Real_Env["物理机器人真实操作"]
+    end
+
+    Real_Act --> Real_Env
+
+    style WAA fill:#eff6ff,stroke:#3b82f6,stroke-width:1.5px
+    style Distill fill:#fef3c7,stroke:#f59e0b,stroke-width:1.5px
+```
+
+```python
+class WorldActionWorkspace:
+    def __init__(self, vlm_backbone, imagination_agent, collision_checker):
+        self.vlm = vlm_backbone
+        self.imagine = imagination_agent
+        self.checker = collision_checker
+
+    def plan_with_rehearsal(self, observation, instruction):
+        # 1. 自动选择最佳接触观察视角
+        contact_view = self.select_contact_view(observation)
+        
+        # 2. 生成初始动作提案
+        action_prop = self.vlm.propose_action(contact_view, instruction)
+        
+        # 3. 想象智能体在隐空间演练并检测几何碰撞
+        simulated_future = self.imagine.rollout(contact_view, action_prop)
+        is_safe, feedback = self.checker.evaluate(simulated_future)
+        
+        # 4. 若存在碰撞或路径漂移，执行视线内残差闭环修正
+        if not is_safe:
+            residual = self.vlm.predict_in_view_residual(simulated_future, feedback)
+            action_final = action_prop + residual
+        else:
+            action_final = action_prop
+            
+        return action_final
+```
+
+#### 📊 实验指标与结论
+* **LIBERO-Pro 创纪录表现**：`World Action Agent (WAA)` 仅使用 LIBERO-90 演化出的操作技能，在挑战极高的 LIBERO-Pro 基准测试上取得了 **`75.6%` 的超高平均成功率**，全面超越传统端到端 VLA、Code-as-Policy 代码策略 Agent 及同主干静态基线；
+* **分布外（OOD）泛化跃迁**：将 `Qwen3.5-9B` 挂载在 WAA 交互轨迹上微调后，其分布外零样本任务操作成功率由惨淡的 **`1.7%` 狂飙至 `43.3%`**；
+* **真机战术手册蒸馏飞跃**：在真实机械臂操作实验中，`Recursive Harness Distillation` 使系统成功率从 `37.3%` 暴增至 **`64.0%`**；在 SimplerEnv Bridge 上，装载战术手册的轻量模型取得 **`66.7%` 成功率**，大幅击败仅用强模型的无战术手册基线（`41.7%`）。
+
+#### 💡 与我们研究的闭环关联
+* 🎯 **锚定关联工作**：直接对接我们的 **`axon_v2`**（`data_rsi/world_verifier.py` 物理验证器）与 **`TraceCraft`**（智能体 Harness 脚手架与自进化探索）；
+* 🔬 **机理对比与技术异同**：我们此前的 `Data-RSI` 世界验证器主要采用反事实离线标签重标；`WAA` 与 `Recursive Harness Distillation` 证明了**将纠偏规则提炼为外挂 Playbook** 能在不频繁微调大模型参数的前提下，以最低成本实现跨机型、跨尺度的策略复用；
+* 💡 **下一阶段研究启发**：在 `TraceCraft/autoresearch_loop.py` 中引入战术手册蒸馏协议，将前序实验失败的断言（Assertions）与修复规则序列化为轻量级 JSON 战术卡片，注入子 Agent 提示词作为动态先验。
+
+#### 💡 工程启发与落地建议
+Playbook 本质上是解耦的因果规则图谱，在工业级机器人产线中可被直接编译为有限状态机（FSM）或行为树（Behavior Tree），具备 100% 确定性的安全回退机制，消除了大模型偶发幻觉造成的设备碰撞风险。
+
+---
+
+> [!TIP]
+> **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression)  
+> **📚 上游精读归档 (`Upstream Source`)**：`scholar-odyssey/intelligence/papers/2026-10-02_ai_paper_notes.md`
+
+
+---
+
+### 3.5 [2026-10-02] 🌊 Transition Flow Matching & Recursive Flow Matching: 全局转移速度场直积求解与多尺度自洽动力学生成
+
+> **关联论文**：
+> * `Transition Flow Matching` ([`arXiv:2603.15689`](https://arxiv.org/abs/2603.15689))
+> * `Recursive Flow Matching` ([`arXiv:2605.26535`](https://arxiv.org/abs/2605.26535))
+
+#### 📌 核心痛点与研究动机
+连续流匹配（Flow Matching）与连续正规化流已成为扩散生成与连续机器人动作轨迹预测（如 Action Chunking Flow）的黄金范式。然而现有主流流匹配体系受困于速度-精度权衡：
+1. **局部速度场的积分累积误差**：传统流匹配（CNF）通过参数化瞬时速度向量场 $v _ \theta(x _ t, t) = \frac{dx _ t}{dt}$ 并在推理时借助欧拉（Euler）或四阶龙格-库塔（RK4）数值求解器多步迭代积分（10–50 NFE），不仅推理极其缓慢，而且步长过大时会迅速偏离真实目标流形；
+2. **多尺度物理动力学自洽性缺失**：在模拟连续流体力学、天气演化及机器人接触力等跨尺度物理过程时，数值离散化步长变化会导致动力学能量守恒定律破缺。
+
+#### ⚙️ 核心机制与数学公式推导
+**`Transition Flow Matching`** 打破了学习局部微元瞬时速度的局限，提出了直接拟合**全局转移流（Transition Flow）**的新范式。定义连接先验噪声 $x _ 0 \sim p _ 0$ 与目标数据 $x _ 1 \sim p _ 1$ 的全局积分算子 $\Phi(x _ t, t \to \tau)$ ，将任意时间跨度的状态跃迁表达为解析全局积分：
+
+$$
+x _ \tau = \Phi _ \theta(x _ t, t \to \tau) = x _ t + (\tau - t) \cdot \bar{v} _ \theta(x _ t, t, \tau)
+$$
+
+其中 $\bar{v} _ \theta$ 称为“全局均值速度流（Global Mean Velocity Flow）”。通过构建全局两点边界损失：
+
+$$
+\mathcal{L} _ {\text{TFM}}(\theta) = \mathbb{E} _ {t, \tau \sim \mathcal{U}[0, 1], x _ 0, x _ 1} \left\lVert \bar{v} _ \theta(x _ t, t, \tau) - \frac{x _ \tau - x _ t}{\tau - t} \right\rVert^2
+$$
+
+在推理时，只需直接令 $t=0, \tau=1$ ，即可在 **单次前向传递（1-NFE）** 下完成无损生成。
+
+**`Recursive Flow Matching (RecFM)`** 引入了**递归跨尺度自洽性（Scale Consistency）**约束。设两步半步离散生成的轨迹点分别为 $x _ {t+\Delta t/2}$ 与 $x _ {t+\Delta t}$ ，强制要求单步全尺度跃迁算子与递归复合两步算子严格重合：
+
+$$
+\mathcal{L} _ {\text{consistency}} = \left\lVert \Phi _ \theta(x _ t, t \to t+\Delta t) - \Phi _ \theta\left(\Phi _ \theta(x _ t, t \to t+\Delta t/2), t+\Delta t/2 \to t+\Delta t\right) \right\rVert^2
+$$
+
+这一自洽性正则项消除了高阶数值截断残差，使得 2–4 步积分即可达到传统 50 步高级 ODE 求解器的精度。
+
+#### 🎨 架构图与核心伪代码
+
+```mermaid
+flowchart LR
+    subgraph Traditional ["传统流匹配 (10-50 NFE)"]
+        x0["噪声 x_0"] --> v1["局部速度 v(t_1)"]
+        v1 --> x1["中间态 x_t1"]
+        x1 --> v2["局部速度 v(t_2)"]
+        v2 --> xfinal["数据 x_1"]
+    end
+
+    subgraph TFM ["Transition Flow Matching (原生 1-NFE)"]
+        x_start["初始状态 x_t"] --> Global_Field["全局均值转移流场 v_bar(x_t, t, tau)"]
+        Global_Field --> Direct_Jump["单步直达目标 x_tau = x_t + (tau - t) * v_bar"]
+    end
+
+    subgraph RecFM ["Recursive Flow Matching (尺度自洽)"]
+        Single_Step["全步长映射 Φ(t -> t+Δt)"]
+        Two_Step["两步复合映射 Φ(Φ(t -> t+Δ/2))"]
+        Consistency{"李雅普诺夫自洽性对齐"}
+        Single_Step --- Consistency --- Two_Step
+    end
+
+    style TFM fill:#eff6ff,stroke:#3b82f6,stroke-width:1.5px
+    style RecFM fill:#ecfdf5,stroke:#10b981,stroke-width:1.5px
+```
+
+```python
+import torch
+import torch.nn as nn
+
+class TransitionFlowMatchingLoss(nn.Module):
+    def __init__(self, model):
+        super().__init__()
+        self.model = model
+
+    def forward(self, x_0, x_1):
+        batch_size = x_0.shape[0]
+        # 1. 独立随机采样起始时间 t 与目标时间 tau (t < tau)
+        t = torch.rand(batch_size, 1, device=x_0.device)
+        delta = torch.rand(batch_size, 1, device=x_0.device) * (1.0 - t)
+        tau = t + delta
+        
+        # 2. 构造线性插值路径上的物理坐标
+        x_t = (1.0 - t) * x_0 + t * x_1
+        x_tau = (1.0 - tau) * x_0 + tau * x_1
+        
+        # 3. 理想全局真实位移速度
+        ground_truth_mean_v = (x_tau - x_t) / (tau - t + 1e-6)
+        
+        # 4. 预测全局均值速度场并优化 MSE 损失
+        pred_mean_v = self.model(x_t, t, tau)
+        loss = torch.mean((pred_mean_v - ground_truth_mean_v) ** 2)
+        
+        return loss
+```
+
+#### 📊 实验指标与结论
+* **科学仿真 20x 速度飞跃**：在复杂的跨尺度时空流体仿真（Navier-Stokes 与气候动力学预测）基准测试中，`RecFM` 在 1–4 步生成下，相比目前领先的扩散基线实现了高达 **`20×` 的端到端推理提速**，同时均方误差（MSE）下降 **`15%` 以上**；
+* **高维生成无损单步落地**：`Transition Flow Matching` 在标准连续生成与机器人多步连续动作预测上，1-NFE 采样的 FID 与动作平滑度指标全面匹敌 20 步欧拉积分的传统 Flow Matching，彻底消除了轨迹采样的积分延迟。
+
+#### 💡 与我们研究的闭环关联
+* 🎯 **锚定关联工作**：直接对接我们的 **`axon_v2`**（`Pillar 2: SnapFlow` 1-NFE 流匹配动作蒸馏）与 **`mera`**（流匹配速度场融合与子空间对齐）；
+* 🔬 **机理对比与技术异同**：我们此前的 `SnapFlow` 基于渐进式自割线速度蒸馏，需要分阶段从 8 步蒸馏至 4 步、2 步乃至 1 步；`Transition Flow Matching` 给出了**端到端单阶段直接学习全局转移流**的全新数学框架，可免去多轮繁琐蒸馏流程；
+* 💡 **下一阶段研究启发**：将 `Transition Flow Matching` 的均值速度参数化引入 `axon/distillation/snapflow_loss.py`，替代当前的自迭代欧拉割线损失，并在动作序列首尾引入 `RecFM` 的自洽性损失，彻底消除机械臂末端执行器在高速变向时的轨迹抖动。
+
+#### 💡 工程启发与落地建议
+在嵌入式伺服驱动器（如 1000Hz 工业总线）中，传统的数值 ODE 求解器往往因中断响应不及时导致步长失稳，而全局转移流仅需单次矩阵乘法前向，计算延迟完全确定，是实现超硬实时机器人控制的最佳数学载体。
+
+---
+
+> [!TIP]
+> **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression)  
+> **📚 上游精读归档 (`Upstream Source`)**：`scholar-odyssey/intelligence/papers/2026-10-02_ai_paper_notes.md`
+
+
+---
+
+### 3.6 [2026-10-02] 🧬 COEVO & SIFT: 参数-上下文协同进化强化学习与基于博弈树搜索的高效代码智能体自改进
+
+> **关联论文**：
+> * `COEVO: Co-Evolving Context and Parameters for Recursive Self-Improvement` ([`arXiv:2609.33398`](https://arxiv.org/abs/2609.33398))
+> * `Self Improvement via Fast Tree-search` ([`arXiv:2609.19526`](https://arxiv.org/abs/2609.19526))
+
+#### 📌 核心痛点与研究动机
+在自主智能体（Autonomous Agents）与递归自我改进（Recursive Self-Improvement, RSI）的前沿探索中，学术界正面临两大瓶颈：
+1. **参数微调与上下文优化的孤立脱节**：现有系统要么专注于更新模型内部权重参数 $\theta$ （固定系统提示词，做 RL 或 SFT），要么专注于优化外围系统提示词与脚手架上下文 $\mathcal{C}$ （冻结模型参数做搜索或反思）。这种物理隔离割裂了关键的双向协同：外围上下文决定了模型采集训练数据的质量分布，而进化后的模型参数反过来需要完全不同的动态引导策略；
+2. **候选自改进代码评测算力开销巨大**：自改进代码智能体每次重写自身组件后，都需要在庞大的基准测试集上全量重新运行以验证优劣，耗费成千上万个 GPU/CPU 小时与巨额 API 成本，使得树搜索搜索步数极其受限。
+
+#### ⚙️ 核心机制与数学公式推导
+**`COEVO`** 将自我改进形式化为参数 $\theta$ 与上下文 $\mathcal{C}$ 的**双时标协同进化动力学（Bilevel Co-Evolution）**。在共享强化学习反馈回路中，定义联合优化目标：
+
+$$
+\max _ {\theta, \mathcal{C}} \mathbb{E} _ {\tau \sim \pi _ \theta(\cdot \mid \mathcal{C})} \left[ \mathcal{R}(\tau) - \beta \mathcal{D} _ {\text{KL}}\left(\pi _ \theta(\cdot \mid \mathcal{C}) \Vert \pi _ {\text{ref}}(\cdot \mid \mathcal{C} _ 0)\right) \right]
+$$
+
+通过策略熵 $\mathcal{H}(\pi _ \theta)$ 监控探索不确定性，并利用提示词注意力分布 $\mathcal{A} _ {\text{context}}$ 识别失效指令：
+
+$$
+\mathcal{C} _ {k+1} = \mathcal{C} _ k + \eta _ c \nabla _ {\mathcal{C}} \left( \mathcal{H}(\pi _ {\theta _ k}) \cdot \mathcal{R} _ {\text{task}} \right)
+$$
+
+实现了内部参数收敛与外部脚手架提示词自适应进化的共振。
+
+**`SIFT (Self Improvement via Fast Tree-search)`** 引入了解耦树搜索架构与基于博弈论的裁判机制。为了摆脱全量基准运行的沉重负担，引入轻量级 LLM-as-a-Judge 对候选自改进代码补丁 $\left(p _ i, p _ j\right)$ 执行成对锦标赛对抗，利用正则化 Bradley-Terry 模型解算各补丁的内生强度得分 $s _ i$ ：
+
+$$
+\mathcal{P}(p _ i \succ p _ j) = \frac{\exp(s _ i)}{\exp(s _ i) + \exp(s _ j)}
+$$
+
+$$
+\min _ {\mathbf{s}} -\sum _ {(i, j) \in \mathcal{D} _ {\text{match}}} \log \mathcal{P}(p _ i \succ p _ j) + \frac{\lambda _ {\text{reg}}}{2} \Vert\mathbf{s}\Vert _ 2^2
+$$
+
+解出的强度向量 $\mathbf{s}$ 直接指导树搜索中的父节点自适应采样权重，仅将得分极高且争议最大的前 5% 精英节点分发给昂贵的真实执行器进行终验。
+
+#### 🎨 架构图与核心伪代码
+
+```mermaid
+flowchart TD
+    subgraph COEVO ["COEVO: 参数-上下文协同进化回路"]
+        Context["自适应上下文脚手架 C_k"] --> Policy["演化中策略网络 π_θ"]
+        Policy --> Rollout["在线生成探索轨迹 τ"]
+        Rollout --> Reward["环境反馈与任务奖励 R(τ)"]
+        Reward --> Update_Theta["PPO/GRPO 更新参数 θ_k+1"]
+        Reward --> Update_C["基于策略熵自适应重写上下文 C_k+1"]
+        Update_Theta --> Policy
+        Update_C --> Context
+    end
+
+    subgraph SIFT ["SIFT: 解耦树搜索与 Bradley-Terry 强度解算"]
+        Candidate_Patches["候选自改进代码补丁池"] --> Pairwise["LLM-as-a-Judge 成对成组博弈"]
+        Pairwise --> Bradley_Terry["正则化 Bradley-Terry 强度求解器"]
+        Bradley_Terry --> Strength_Scores["输出隐式相对实力强度向量 s"]
+        Strength_Scores --> Tree_Sampling["高潜节点优先采样 (仅前 5% 真实测试)"]
+        Tree_Sampling --> Candidate_Patches
+    end
+
+    style COEVO fill:#eff6ff,stroke:#3b82f6,stroke-width:1.5px
+    style SIFT fill:#fef3c7,stroke:#f59e0b,stroke-width:1.5px
+```
+
+```python
+import numpy as np
+from scipy.optimize import minimize
+
+def solve_bradley_terry_strengths(match_results, num_patches, reg=0.01):
+    """
+    match_results: list of tuples (winner_idx, loser_idx)
+    num_patches: 候选代码补丁总数
+    """
+    def neg_log_likelihood(s):
+        loss = 0.0
+        for w, l in match_results:
+            diff = s[w] - s[l]
+            loss += np.log(1.0 + np.exp(-diff))
+        loss += 0.5 * reg * np.sum(s ** 2)
+        return loss
+
+    init_s = np.zeros(num_patches)
+    res = minimize(neg_log_likelihood, init_s, method='L-BFGS-B')
+    strengths = res.x
+    # 归一化采样概率
+    probs = np.exp(strengths - np.max(strengths))
+    return probs / np.sum(probs)
+```
+
+#### 📊 实验指标与结论
+* **抗提示词扰动与推理上限突破**：`COEVO` 在复杂推理基准测试中，相较固定上下文的传统强化学习基准，在更短训练步数内取得显著更高的任务胜率，且当测试期人为给系统提示词注入噪声或风格改变时，其鲁棒性比对照组高出 **`31.4%`**；
+* **算力与时间成本缩减一个数量级**：`SIFT` 在极具挑战性的多语言全量 `Polyglot` 编程自演化基准上，不仅最终达到的 Pass@1 代码准确率全面超越现有基于 MCTS 的自进化架构，而且将所消耗的 **CPU 核心小时、实际运行挂钟时间（Wall-clock time）以及 API 成本削减了 70%–85%**。
+
+#### 💡 与我们研究的闭环关联
+* 🎯 **锚定关联工作**：直接对接我们的 **`TraceCraft`**（`autoresearch_loop.py` 自主科研智能体）与 **`Better-Peer-Review`**（同行评审对抗博弈与可信度建模）；
+* 🔬 **机理对比与技术异同**：我们在 `TraceCraft` 中此前的自优化流程依赖单智能体自反思重写与串行全量单元测试；`SIFT` 提供的解耦树搜索与 Bradley-Terry 成对快速过滤机制，为我们解决自优化过程中的“评测拥堵”提供了关键的算法杠杆；
+* 💡 **下一阶段研究启发**：在 `TraceCraft` 的 Outer-Loop 中集成 `COEVO` 的参数-提示词双向反馈协议，并把 `SIFT` 的 Bradley-Terry 锦标赛裁判引入 `TraceCraft/semantic_validator.py`，实现多分支候选补丁的毫秒级剪枝。
+
+#### 💡 工程启发与落地建议
+在工程自动化流水线中，成对裁判（Pairwise Judging）通常只需比对代码差异（Diff），比直接运行耗时数分钟的 Docker 容器集成测试快两个数量级以上，非常适合部署为前端“快筛看门狗（Fast Pre-filter）”，拦截绝大部分低级逻辑错误代码。
+
+---
+
+> [!TIP]
+> **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression)  
+> **📚 上游精读归档 (`Upstream Source`)**：`scholar-odyssey/intelligence/papers/2026-10-02_ai_paper_notes.md`
+
+
+---
+
+### 3.7 [2026-10-01] IAprune & Rényi Entropy (`Col-Ln`): Interaction-Aligned Visual Token Pruning for Embodied Manipulation & Early-Layer Rényi Entropy Pruning (`arXiv:2603.22991` & `arXiv:2603.27900`)
 * **论文标题**：
   1. *Training-Free Interaction-Aligned Visual Token Pruning for Efficient Embodied Manipulation* (`arXiv:2603.22991`)
   2. *Rényi Entropy: A New Token Pruning Metric for Vision Transformers* (`arXiv:2603.27900`)
@@ -320,7 +932,7 @@ $$
 
 ---
 
-### 3.3 [2026-10-01] AIMER & EvoESAP: Calibration-Free Weight Concentration MoE Expert Pruning & Speculative-Acceptance Evolutionary Non-Uniform Allocation (`arXiv:2603.18492` & `arXiv:2603.06003`)
+### 3.8 [2026-10-01] AIMER & EvoESAP: Calibration-Free Weight Concentration MoE Expert Pruning & Speculative-Acceptance Evolutionary Non-Uniform Allocation (`arXiv:2603.18492` & `arXiv:2603.06003`)
 * **论文标题**：
   1. *AIMER: Calibration-Free Task-Agnostic MoE Expert Pruning* (`arXiv:2603.18492`)
   2. *EvoESAP: Non-Uniform Expert Pruning for Sparse MoE* (`arXiv:2603.06003`)
@@ -389,7 +1001,7 @@ $$
 
 ---
 
-### 3.4 [2026-10-01] MixedDimKV & DapQ: Mixed-Dimension Feature Budget Allocation & Position-Aware Pseudo-Query KV Cache Compression (`arXiv:2603.20616` & `arXiv:2603.11564`)
+### 3.9 [2026-10-01] MixedDimKV & DapQ: Mixed-Dimension Feature Budget Allocation & Position-Aware Pseudo-Query KV Cache Compression (`arXiv:2603.20616` & `arXiv:2603.11564`)
 * **论文标题**：
   1. *Beyond Token Eviction: Mixed-Dimension Budget Allocation for Efficient KV Cache Compression* (`arXiv:2603.20616`)
   2. *Where Matters More Than What: Decoding-aligned KV Cache Compression via Position-aware Pseudo Queries* (`arXiv:2603.11564`)
@@ -461,7 +1073,7 @@ $$
 
 ---
 
-### 3.5 [2026-09-30] SlimWise & CascadeEP: Decoupling Expert Pruning Across Prefill/Decode & Asynchronous MoE Execution under Attention Imbalance (`arXiv:2609.34117` & `arXiv:2609.33252`)
+### 3.10 [2026-09-30] SlimWise & CascadeEP: Decoupling Expert Pruning Across Prefill/Decode & Asynchronous MoE Execution under Attention Imbalance (`arXiv:2609.34117` & `arXiv:2609.33252`)
 * **论文标题**：
   1. *SlimWise: Decoupling Expert Pruning Across Prefill and Decode for Efficient MoE Serving* (`arXiv:2609.34117`)
   2. *CascadeEP: Asynchronous Expert Execution for MoE Prefill under Attention Imbalance* (`arXiv:2609.33252`)
@@ -523,7 +1135,7 @@ $$
 
 ---
 
-### 3.6 [2026-09-30] Dynamic Flow, Static Graph & DORA: KV Cache Reuse on Static NPU Graphs & Dynamic Online RL Token Pruning (`arXiv:2609.34727` & `arXiv:2609.34325`)
+### 3.11 [2026-09-30] Dynamic Flow, Static Graph & DORA: KV Cache Reuse on Static NPU Graphs & Dynamic Online RL Token Pruning (`arXiv:2609.34727` & `arXiv:2609.34325`)
 * **论文标题**：
   1. *Dynamic Flow, Static Graph: KV Cache Reuse for Efficient LLM Serving on Mobile NPUs* (`arXiv:2609.34727`)
   2. *DORA: Dynamic Online Reinforcement Agent for Token Pruning in Vision Transformers* (`arXiv:2609.34325`)
@@ -581,13 +1193,13 @@ $$
 ## 🔥 板块二：全球前沿热点精选 (Trending Frontier)
 
 > [!TIP]
-> **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`MEO` (Static-Graph Padded KV Arena Reuse on Edge NPUs)  
+> **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression)  
 > **📚 上游精读归档 (`Upstream Source`)**：`scholar-odyssey/intelligence/papers/2026-09-30_ai_paper_notes.md`
 
 
 ---
 
-### 3.7 [2026-09-30] VLaRL & Programmable World Model: Latent-Conditioned Sim-to-Real Residual RL for Frozen VLAs & Executable World State Evolution (`arXiv:2609.30868` & `arXiv:2609.10540`)
+### 3.12 [2026-09-30] VLaRL & Programmable World Model: Latent-Conditioned Sim-to-Real Residual RL for Frozen VLAs & Executable World State Evolution (`arXiv:2609.30868` & `arXiv:2609.10540`)
 * **论文标题**：
   1. *VLaRL: Augmenting Vision-Language-Action Models with Simulation-Trained Latent-Conditioned Residual RL* (`arXiv:2609.30868`)
   2. *Programmable World Model* (`arXiv:2609.10540`)
@@ -656,7 +1268,7 @@ $$
 
 ---
 
-### 3.8 [2026-09-29] 🧩 *CoMoE-Spec: Efficient Mixture-of-Experts with Speculative Decoding via Expert Coactivation*
+### 3.13 [2026-09-29] 🧩 *CoMoE-Spec: Efficient Mixture-of-Experts with Speculative Decoding via Expert Coactivation*
 > 🏷️ **核心关键词**：Mixture-of-Experts (MoE) · Speculative Decoding · Expert Coactivation Routing · Memory-Bandwidth Bottleneck  
 > 🔗 **arXiv 链接**：[`arXiv:2609.22471`](https://arxiv.org/abs/2609.22471)
 
@@ -702,7 +1314,7 @@ $$
 
 ---
 
-### 3.9 [2026-09-29] ⚡ *VestigeKV: The NoPE-MLA KV Cache Carries Its Own Sparse-Attention Signal in a Vestigial Branch*
+### 3.14 [2026-09-29] ⚡ *VestigeKV: The NoPE-MLA KV Cache Carries Its Own Sparse-Attention Signal in a Vestigial Branch*
 > 🏷️ **核心关键词**：Multi-Head Latent Attention (MLA) · NoPE (No Positional Encoding) · Sparse Attention · Training-Free KV Cache Eviction  
 > 🔗 **arXiv 链接**：[`arXiv:2609.03949`](https://arxiv.org/abs/2609.03949)
 
@@ -747,7 +1359,7 @@ $$
 
 ---
 
-### 3.10 [2026-09-29] 🦾 *DEE-VLA: Decoupled Early Exits for Task-Dependent Compute Allocation in Flow-Matching VLAs*
+### 3.15 [2026-09-29] 🦾 *DEE-VLA: Decoupled Early Exits for Task-Dependent Compute Allocation in Flow-Matching VLAs*
 > 🏷️ **核心关键词**：Vision-Language-Action (VLA) · Flow Matching · Decoupled Early Exits · Dynamic Compute Allocation  
 > 🔗 **arXiv 链接**：[`arXiv:2609.29382`](https://arxiv.org/abs/2609.29382)
 
@@ -791,7 +1403,7 @@ $$
 
 ---
 
-### 3.11 [2026-09-28] ✂️ *ASL: Adaptive Layer Selection for Layer-Wise Token Pruning in LLM Inference*
+### 3.16 [2026-09-28] ✂️ *ASL: Adaptive Layer Selection for Layer-Wise Token Pruning in LLM Inference*
 > 🏷️ **核心关键词**：Layer-Wise Token Pruning · Adaptive Layer Selection · Attention Variance · Long-Context LLM Inference  
 > 🔗 **arXiv 链接**：[`arXiv:2601.07667`](https://arxiv.org/abs/2601.07667) (ACL 2026 Findings)
 
@@ -837,7 +1449,7 @@ $$
 
 ---
 
-### 3.12 [2026-09-28] 🧩 *PiKV: KV Cache Management System for Mixture of Experts*
+### 3.17 [2026-09-28] 🧩 *PiKV: KV Cache Management System for Mixture of Experts*
 > 🏷️ **核心关键词**：Mixture-of-Experts (MoE) · Expert-Sharded KV Cache · Distributed Serving · Memory & Communication Co-Design  
 > 🔗 **arXiv 链接**：[`arXiv:2508.06526`](https://arxiv.org/abs/2508.06526) (2026 v3)
 
@@ -883,7 +1495,7 @@ $$
 
 ---
 
-### 3.13 [2026-09-27] L2R: Low-Rank and Lipschitz-Controlled Routing for Mixture-of-Experts
+### 3.18 [2026-09-27] L2R: Low-Rank and Lipschitz-Controlled Routing for Mixture-of-Experts
 
 * **论文信息**：Minghao Yang, Ren Togo, Guang Li, Takahiro Ogawa, Miki Haseyama (`arXiv:2601.21349`, 2026-01)
 * **核心关键词**：MoE Routing Geometry、Low-Rank Latent Space、Lipschitz Continuity、Saturated Inner-Product Scoring (SIPS)、Multi-Anchor Routing
@@ -976,7 +1588,7 @@ $$
 
 ---
 
-### 3.14 [2026-09-27] OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference
+### 3.19 [2026-09-27] OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference
 
 * **论文信息**：Yuzhe Gu, Xiyu Liang, Jiaojiao Zhao, Enmao Diao (`arXiv:2510.07651`, **ICML 2026**)
 * **核心关键词**：KV Cache Eviction、Optimal Brain Damage (OBD)、Second-Order Taylor Perturbation、Output-Aware Saliency、Joint KV Pruning
@@ -1071,7 +1683,7 @@ $$
 
 ---
 
-### 3.15 [2026-09-26] 🔄 *LoopMoE: Unifying Iterative Computation with Mixture-of-Experts for Language Modeling*
+### 3.20 [2026-09-26] 🔄 *LoopMoE: Unifying Iterative Computation with Mixture-of-Experts for Language Modeling*
 > **聚焦领域**：Looped Transformers · Mixture of Experts (MoE) · Iterative Depth Scaling · Weight Sharing  
 > **arXiv**：[`arXiv:2606.04438`](https://arxiv.org/abs/2606.04438)
 
@@ -1124,7 +1736,7 @@ $$
 
 ---
 
-### 3.16 [2026-09-26] ⚖️ *SelKV: Selective KV Cache Merging with Per-Token Merge-or-Drop and Attention Compensation*
+### 3.21 [2026-09-26] ⚖️ *SelKV: Selective KV Cache Merging with Per-Token Merge-or-Drop and Attention Compensation*
 > **聚焦领域**：KV Cache Compression · Softmax Denominator Compensation · Token Merging vs. Dropping  
 > **arXiv**：[`arXiv:2607.16213`](https://arxiv.org/abs/2607.16213)
 
@@ -1179,7 +1791,7 @@ $$
 
 ---
 
-### 3.17 [2026-09-25] SAC: Disaggregated KV Cache Architecture for Sparse Attention Serving over CXL
+### 3.22 [2026-09-25] SAC: Disaggregated KV Cache Architecture for Sparse Attention Serving over CXL
 
 * **论文信息**：`arXiv:2604.18392` (2026-04)
 * **核心关键词**：CXL 3.0 Memory Pooling、Disaggregated KV Cache、Sparse Attention Sub-Page Gather
@@ -1228,7 +1840,7 @@ $$
 
 ---
 
-### 3.18 [2026-09-23] MELT: Memory-Efficient Looped Transformer — Decoupling Compute from Memory
+### 3.23 [2026-09-23] MELT: Memory-Efficient Looped Transformer — Decoupling Compute from Memory
 
 * **论文信息**：`arXiv:2605.07721` (2026-05)
 * **核心关键词**：Memory-Efficient Looped Transformer、Shared Cross-Loop KV Cache、Compute-Memory Decoupling
@@ -1279,7 +1891,65 @@ $$
 
 ---
 
-### 3.19 [2026-09-22] SPIN: Unifying Sparse Attention with Hierarchical Memory for Scalable Long-Context LLM Serving
+### 3.24 [2026-09-22] LoRP: Locality-Aware Redundancy Pruning for LLM Depth Compression
+
+* **论文信息**：`arXiv:2605.27786` (2026-05)
+* **核心关键词**：Locality-Aware Depth Pruning、Manifold Neighborhood Preservation、k-NN Graph Overlap、One-Shot Layer Pruning
+
+#### 📐 架构与核心算法流程图 (ASCII Blueprint)
+
+```text
++-----------------------------------------------------------------------------------+
+|          LoRP: Locality-Aware Redundancy Pruning for LLM Depth Compression        |
++-----------------------------------------------------------------------------------+
+|                                                                                   |
+|  Token Representations before & after Layer l: H^{(l-1)}, H^{(l)} \in R^{N x d}   |
+|                                        |                                          |
+|                                        v                                          |
+|  +-----------------------------------------------------------------------------+  |
+|  | 1. Local k-NN Manifold Graph Construction (局部流形邻域图构建)              |  |
+|  |    For each token i, find k-nearest neighbors \mathcal{N}_k^{(l)}(i)        |  |
+|  |    under cosine/geodesic distance                                           |  |
+|  +-----------------------------------------------------------------------------+  |
+|                                        |                                          |
+|                                        v                                          |
+|  +-----------------------------------------------------------------------------+  |
+|  | 2. Locality Preservation Score (局部邻域拓扑保持率打分)                     |  |
+|  |    \mathcal{S}_{\text{loc}}(l) = \frac{1}{N} \sum_{i=1}^N \frac{|\mathcal{N}_k^{(l-1)}(i) \cap \mathcal{N}_k^{(l)}(i)|}{k}|
+|  |    High \mathcal{S}_{\text{loc}}(l) => Layer l does not reorganize semantics|  |
+|  +-----------------------------------------------------------------------------+  |
++-----------------------------------------------------------------------------------+
+```
+
+#### 🎯 背景与痛点 (Background & Pain Points)
+* **全局余弦相似度（Global Cosine Similarity）受制于各向异性均值偏移**：ShortGPT 等传统方法通过单点输入输出的余弦相似度 $\cos(h _ i^{(l-1)}, h _ i^{(l)})$ 判断层冗余度。然而在深层 Transformer 中，所有 Token 都共享一个巨大的共同方向（Common Mean Direction），导致即便某层对 Token 之间的相对局部语义拓扑进行了剧烈重排，其单点全局余弦相似度依然高达 `0.95` 以上，引发误判。
+
+#### 💡 核心方法与数学公式 (Core Methodology & Math)
+1. **基于核对齐与 $k$ -近邻重叠的局部几何冗余度（Neighborhood Locality Redundancy）**：
+   记第 $l$ 层在小批量样本 $N$ 个 Token 上的局部亲和矩阵为 $K _ {i,j}^{(l)} = \exp\left(-\frac{\Vert h _ i^{(l)} - h _ j^{(l)}\Vert _ 2^2}{2\sigma _ l^2}\right)$ 。定义第 $l$ 层的局部流形冗余度为相邻两层局部邻域分布的对称 KL 散度倒数（或 $k$ -NN 交并比）：
+
+$$
+\mathcal{R} _ {\text{LoRP}}(l) = \frac{1}{N} \sum _ {i=1}^N \left( \frac{|\mathcal{N} _ k(h _ i^{(l-1)}) \cap \mathcal{N} _ k(h _ i^{(l)})|}{k} \right) \cdot \exp\Big( - D _ {\text{JS}}\big( P _ i^{(l-1)} \Vert P _ i^{(l)} \big) \Big)
+$$
+
+   若 $\mathcal{R} _ {\text{LoRP}}(l) \to 1$ ，说明第 $l$ 层既未改变样本间的局部聚类关系，也未分离混淆语义簇，可安全移除。
+
+#### 📊 关键实验与结论 (Key Experiments & Takeaways)
+* 在 **Llama-2/3** 与 **Mistral-7B** 的 25% 免训练层剪枝上，LoRP 在 MMLU 与 BBH 复杂推理基准上比全局余弦打分（ShortGPT）提升 **`+4.3%`**。
+
+#### 🔗 与我们工作（Our Works）的直接关联与落地启发
+* **直接验证了我们 *Demystifying When Pruning Works via Representation Hierarchies* (ICML 2026) 的核心论断**：层剪枝的关键不在于单点向量的绝对位移，而在于该层是否触发了表示层级（Representation Hierarchy）的局部邻域拓扑相变！
+
+---
+
+> [!TIP]
+> **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression)  
+> **📚 上游精读归档 (`Upstream Source`)**：`scholar-odyssey/intelligence/papers/2026-09-22_ai_paper_notes.md`
+
+
+---
+
+### 3.25 [2026-09-22] SPIN: Unifying Sparse Attention with Hierarchical Memory for Scalable Long-Context LLM Serving
 
 * **论文信息**：`arXiv:2604.26837` (2026-04)
 * **核心关键词**：Sparse Attention Serving、Hierarchical GPU-CPU Memory、Asynchronous Layer-Ahead Prefetching
@@ -1329,7 +1999,7 @@ $$
 
 ---
 
-### 3.20 [2026-09-20] SHIFT-LLM: Distribution Shift Correction in Depth-Pruned LLMs
+### 3.26 [2026-09-20] SHIFT-LLM: Distribution Shift Correction in Depth-Pruned LLMs
 
 * **论文信息**：`arXiv:2608.25068` (2026-08)
 * **核心关键词**：Depth Pruning、Distribution Shift Correction、Linear Residual Adapters (LRA)、Closed-Form Ridge Regression、Weight Folding
@@ -1394,7 +2064,7 @@ $$
 
 ---
 
-### 3.21 [2026-09-20] CARE: Spend Experts Where You Are Unsure — Confidence-Adaptive Routing for MoE-LoRA
+### 3.27 [2026-09-20] CARE: Spend Experts Where You Are Unsure — Confidence-Adaptive Routing for MoE-LoRA
 
 * **论文信息**：`arXiv:2607.26052` (2026-07)
 * **核心关键词**：Confidence-Adaptive Routing、MoE-LoRA、Nucleus Expert Activation、Router Uncertainty Entropy
@@ -1453,7 +2123,7 @@ $$
 
 ---
 
-### 3.22 [2026-09-20] Minima-KV: Mixed-Format Paged Attention for Extreme KV Cache Compression
+### 3.28 [2026-09-20] Minima-KV: Mixed-Format Paged Attention for Extreme KV Cache Compression
 
 * **论文信息**：`arXiv:2608.23834` (2026-08)
 * **核心关键词**：Mixed-Precision KV Cache、PagedAttention、Sub-Page Bit-Packing、Reasoning Continuity
@@ -1520,7 +2190,7 @@ $$
 
 ---
 
-### 3.23 [2026-09-18] 🧩 *MoE-Tile: Warp-Aligned Tensor Slicing for Zero-Overhead Dynamic Sparse Routing on Modern Accelerators*
+### 3.29 [2026-09-18] 🧩 *MoE-Tile: Warp-Aligned Tensor Slicing for Zero-Overhead Dynamic Sparse Routing on Modern Accelerators*
 > **聚焦领域**：Mixture of Experts (MoE) · GPU Kernel Optimization · Warp Divergence · Hardware-Aware Sparsity  
 > **arXiv**：[`arXiv:2609.09112`](https://arxiv.org/abs/2609.09112)
 
@@ -1573,7 +2243,7 @@ $$
 
 ---
 
-### 3.24 [2026-09-18] 🗜️ *Decoupled-KV: Low-Rank Residual Decomposition for Multi-Turn Agentic KV Cache Compression*
+### 3.30 [2026-09-18] 🗜️ *Decoupled-KV: Low-Rank Residual Decomposition for Multi-Turn Agentic KV Cache Compression*
 > **聚焦领域**：KV Cache Compression · Agent Long-Context · Low-Rank Decomposition · Memory Bandwidth  
 > **arXiv**：[`arXiv:2609.07765`](https://arxiv.org/abs/2609.07765)
 
@@ -1622,6 +2292,23 @@ $$
 
 > [!TIP]
 > **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`SparseAdapter` / `MEO` / `PAD-Net`  
+> **📚 上游精读归档 (`Upstream Source`)**：`scholar-odyssey/intelligence/papers/2026-09-18_ai_paper_notes.md`
+
+
+---
+
+### 3.31 [2026-09-18] 🧬 *Autoformalizer-Agent: Self-Correcting Execution Graphs with Bounded Symbolic Proofs*
+> **聚焦领域**：AI Coding Agents · Symbolic Verification · Formal Methods · Self-Correction  
+> **arXiv**：[`arXiv:2609.09881`](https://arxiv.org/abs/2609.09881)
+
+* **核心痛点**：传统自主编程智能体在多步循环中易陷入虚假死循环（Hallucinatory Infinite Loop），缺乏确定性数学证明来截断无效尝试。
+* **具体做法**：将代码生成与执行图转化为 Lean4 / Coq 形式化符号谓词，引入有界符号求解器（Bounded SMT Solver）对每一轮补丁进行双向因果验真，未通过者在 1ms 内触发剪枝回滚。
+* **结论**：在 HumanEval-Hard 与 RepoBench 上一次性代码解决率提升 **34.2%**，完全消除了死循环试错。
+
+---
+
+> [!TIP]
+> **🎯 `SparseAdapter-MEO-PADNet` 仓库代码级落地点 (`Target Module`)**：`MEO` (RoPE-Aligned Dimension-Pair (2i, 2i+1) KV Cache Channel Compression)  
 > **📚 上游精读归档 (`Upstream Source`)**：`scholar-odyssey/intelligence/papers/2026-09-18_ai_paper_notes.md`
 
 
